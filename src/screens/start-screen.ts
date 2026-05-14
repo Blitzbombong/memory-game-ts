@@ -9,20 +9,20 @@ export const getStartScreenHTML = (): string => {
         <button class="play-button">
   
         <span class="icon-left">
-          <img src="public/assets/icons/ui/stadia_controller.svg" alt="Play Icon">
+          <img src="assets/icons/ui/stadia_controller.svg" alt="Play Icon">
         </span>
         
         <span class="button-text">Play</span>
         
         <span class="arrow-wrapper">
-          <img src="public/assets/icons/ui/arrow_one.svg" class="arrow-normal" alt="Normal Arrow">
-          <img src="public/assets/icons/ui/arrow_two.svg" class="arrow-hover" alt="Hover Arrow">
+          <img src="assets/icons/ui/arrow_one.svg" class="arrow-normal" alt="Normal Arrow">
+          <img src="assets/icons/ui/arrow_two.svg" class="arrow-hover" alt="Hover Arrow">
         </span>
 
       </button>
       </main>
       <footer class="start-footer">
-        <img class="start-controller" src="public/assets/icons/ui/start_controller.svg" alt="Start screen illustration" class="start-illustration">
+        <img class="start-controller" src="assets/icons/ui/start_controller.svg" alt="Start screen illustration" class="start-illustration">
       </footer>
     </section>
   `
