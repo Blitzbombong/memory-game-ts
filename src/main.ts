@@ -1,8 +1,11 @@
 import "./styles/style.scss";
-import type { GameSettings, GameState } from "./types/types";
+import type { GameSettings, GameState, Card } from "./types/types";
 import { getStartScreenHTML } from "./screens/start-screen";
 import { getSettingsScreenHTML } from "./screens/settings-screen";
+import { getInGameScreenHTML } from "./screens/in-game-screen";
 import { setupSettingsScreenListeners } from "./logic/settings-logic";
+import { createDeck } from "./logic/game-logic";
+import { setupGameListeners } from "./logic/game-logic";
 
 let currentSettings: GameSettings = {
   theme: "code-vibes",
@@ -11,6 +14,8 @@ let currentSettings: GameSettings = {
 };
 
 let currentState: GameState = "start";
+
+let allCards: Card[] = [];
 
 function init() {
   render();
@@ -27,9 +32,20 @@ function render() {
     appRef.innerHTML = getSettingsScreenHTML();
     setupSettingsScreenListeners((newSettings) => {
       currentSettings = newSettings;
+      allCards = createDeck(currentSettings.boardSize);
       currentState = "in-game";
       render();
     });
+  } else if (currentState === "in-game") {
+    appRef.innerHTML = getInGameScreenHTML(allCards);
+    setupGameListeners(
+      allCards, 
+      () => render(), // Was soll beim Klicken passieren? Neu zeichnen!
+      () => {         // Was soll beim Exit passieren?
+        currentState = 'settings'; // Zurück zu den Einstellungen
+        render(); 
+      }
+    );
   }
 }
 

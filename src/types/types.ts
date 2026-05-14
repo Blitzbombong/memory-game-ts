@@ -5,3 +5,10 @@ export interface GameSettings {
 }
 
 export type GameState = 'start' | 'settings' | 'in-game' | 'game-over';
+
+export interface Card {
+  id: number;
+  value: string;      
+  isFlipped: boolean; 
+  isMatched: boolean; 
+}
