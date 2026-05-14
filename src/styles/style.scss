@@ -1,36 +1,45 @@
-body {
-  height: 100vh;
-  background-color: aqua;
+@use 'variables';
+@use 'reset';
+@use 'start-screen';
+@use 'settings-screen';
+@use 'in-game-screen';
+@use 'result-overlay';
+@use 'cards';
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 400;
+  src: url('public/assets/fonts/almarai-v19-latin-regular.woff2') format('woff2'); 
 }
 
-.card {
-  width: 100px;
-  height: 100px;
-  background-color: transparent;
-  border: none;
-  aspect-ratio: 1/1;
-
-  &__inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: all 300ms ease-in-out;
-  }
-
-  &__face {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    background-color: yellow;
-
-    &--back {
-      transform: rotateY(180deg);
-      background-color: red;
-    }
-  }
-
-  &.is-flipped .card__inner {
-    transform: rotateY(180deg);
-  }
+@font-face {
+  font-display: swap; 
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 700;
+  src: url('public/assets/fonts/almarai-v19-latin-700.woff2') format('woff2'); 
 }
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Red Rose';
+  font-style: normal;
+  font-weight: 400;
+  src: url('public/assets/fonts/red-rose-v25-latin-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Red Rose';
+  font-style: normal;
+  font-weight: 700;
+  src: url('public/assets/fonts/red-rose-v25-latin-700.woff2') format('woff2'); 
+}
+
+
+
+
+
+

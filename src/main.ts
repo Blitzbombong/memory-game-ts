@@ -51,7 +51,7 @@ function render() {
 
 function setupStartScreenListeners() {
   const startButton = document.querySelector(
-    ".start-button",
+    ".play-button"
   ) as HTMLButtonElement;
   if (startButton) {
     startButton.addEventListener("click", () => {
