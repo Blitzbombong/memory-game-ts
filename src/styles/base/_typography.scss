@@ -1,0 +1,34 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/almarai-v19-latin-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/assets/fonts/almarai-v19-latin-700.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Red Rose';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/red-rose-v25-latin-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Red Rose';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/assets/fonts/red-rose-v25-latin-700.woff2') format('woff2'); 
+}

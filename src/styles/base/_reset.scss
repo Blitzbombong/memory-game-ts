@@ -1,4 +1,5 @@
-@use 'variables' as *;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
 
 * {
   margin: 0;
@@ -12,5 +13,5 @@ html {
 
 body {
   height: 100vh;
-  font-family: $font-main;
+  font-family: v.$font-main;
 }

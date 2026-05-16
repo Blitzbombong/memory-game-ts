@@ -1,42 +1,15 @@
-@use 'variables';
-@use 'reset';
-@use 'start-screen';
-@use 'settings-screen';
-@use 'in-game-screen';
-@use 'result-overlay';
-@use 'cards';
+@use './abstracts/variables' as v;
+@use './abstracts/mixins' as m;
+@use './base/reset';
+@use './base/typography';
+@use './components/cards';
+@use './components/buttons'; 
+@use './layouts/start-screen';
+@use './layouts/settings-screen';
+@use './layouts/in-game-screen';
+@use './layouts/result-overlay';
 
-@font-face {
-  font-display: swap; 
-  font-family: 'Almarai';
-  font-style: normal;
-  font-weight: 400;
-  src: url('public/assets/fonts/almarai-v19-latin-regular.woff2') format('woff2'); 
-}
 
-@font-face {
-  font-display: swap; 
-  font-family: 'Almarai';
-  font-style: normal;
-  font-weight: 700;
-  src: url('public/assets/fonts/almarai-v19-latin-700.woff2') format('woff2'); 
-}
-
-@font-face {
-  font-display: swap; 
-  font-family: 'Red Rose';
-  font-style: normal;
-  font-weight: 400;
-  src: url('public/assets/fonts/red-rose-v25-latin-regular.woff2') format('woff2'); 
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Red Rose';
-  font-style: normal;
-  font-weight: 700;
-  src: url('public/assets/fonts/red-rose-v25-latin-700.woff2') format('woff2'); 
-}
 
 
 

@@ -1,7 +1,7 @@
 export const getSettingsScreenHTML = (): string => {
   return `
     <section class="settings-screen">
-        <h1>Settings</h1>
+        <h2>Settings</h2>
 
         <div class="settings-layout-wrapper">
             <div class="settings-controls">

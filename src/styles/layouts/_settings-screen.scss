@@ -1,0 +1,8 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+
+.settings-screen {
+    @include m.flex-center;
+    @include m.page-container;
+    background-color: v.$color-bg;
+}
