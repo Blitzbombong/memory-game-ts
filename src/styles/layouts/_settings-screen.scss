@@ -1,8 +1,98 @@
-@use '../abstracts/mixins' as m;
-@use '../abstracts/variables' as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
 
 .settings-screen {
-    @include m.flex-center;
-    @include m.page-container;
-    background-color: v.$color-bg;
+  @include m.flex-center;
+  @include m.page-container;
+  background-color: v.$color-white;
+  flex-direction: column;
+
+  .settings-content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 120rem;
+  }
+
+  .settings-title-group {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 4.0rem;
+
+    .settings-title {
+    font-size: 5.4rem;
+    font-family: v.$font-accent;
+    font-weight: 700;
+    color: v.$color-bg;
+    line-height: 100%;
+    }
+
+    .settings-divider {
+      width: 25.0rem;
+      height: auto;
+    }
+  }
+
+  .settings-layout-wrapper {
+    @include m.parent;
+    width: 100%;
+  }
+
+  .settings-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: none;
+
+    .legend-content {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .settings-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      object-fit: contain;
+    }
+  }
+
+  .settings-group label {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
+    margin-left: 5.2rem;
+  }
+
+  .settings-label {
+    @include m.heading-large;
+    margin-bottom: 1rem;
+  }
+
+  .options {
+    @include m.label-large;
+    color: v.$color-bg;
+  }
+
+  .preview-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
 }

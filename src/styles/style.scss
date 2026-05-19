@@ -2,6 +2,7 @@
 @use './abstracts/mixins' as m;
 @use './base/reset';
 @use './base/typography';
+@use './components/forms';
 @use './components/cards';
 @use './components/buttons'; 
 @use './layouts/start-screen';
