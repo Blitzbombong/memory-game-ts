@@ -47,4 +47,39 @@
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
   }
+
+  &--with-arrow {
+    width: 100%;
+    position: relative;
+    
+
+    &:hover {
+      .radio-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    input[type="radio"]:checked {
+      ~ .radio-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .radio-arrow {
+      display: inline-block;
+      width: 4.0rem;
+      height: 1.2rem;
+      margin-left: -0.5rem;
+      background-image: url('../assets/icons/ui/line_rigth.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center right;
+      opacity: 0;
+      transform: translateX(-1.0rem);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+  }
 }
+

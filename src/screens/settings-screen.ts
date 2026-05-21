@@ -14,20 +14,22 @@ export const getSettingsScreenHTML = (): string => {
                             <legend class="settings-label">
                                 <div class="legend-content">
                                     <img class="settings-icon" src="./assets/icons/ui/settings_print.svg" alt="settings icon" />
-                                    <span>Choose player</span>
+                                    <span>Game themes</span>
                                 </div>
                             </legend>
 
                             <div class="options">
-                                <label class="option-item">
-                                    <input type="radio" name="chosenPlayer" value="blue" checked>
+                                <label class="option-item option-item--with-arrow">
+                                    <input type="radio" name="gameTheme" value="code vibes">
                                     <span class="custom-radio"></span>
-                                    <span>Blue</span>
+                                    <span>Code vibes theme</span>
+                                    <span class="radio-arrow"></span>
                                 </label>
-                                <label class="option-item">
-                                    <input type="radio" name="chosenPlayer" value="orange">
+                                <label class="option-item option-item--with-arrow">
+                                    <input type="radio" name="gameTheme" value="gaming">
                                     <span class="custom-radio"></span>
-                                    <span>Orange</span>
+                                    <span>Gaming theme</span>
+                                    <span class="radio-arrow"></span>
                                 </label>
                             </div>
 
@@ -43,15 +45,17 @@ export const getSettingsScreenHTML = (): string => {
                             </legend>
 
                             <div class="options">
-                                <label class="option-item">
-                                    <input type="radio" name="chosenPlayer" value="blue" checked>
+                                <label class="option-item option-item--with-arrow">
+                                    <input type="radio" name="chosenPlayer" value="blue">
                                     <span class="custom-radio"></span>
                                     <span>Blue</span>
+                                    <span class="radio-arrow"></span>
                                 </label>
-                                <label class="option-item">
+                                <label class="option-item option-item--with-arrow">
                                     <input type="radio" name="chosenPlayer" value="orange">
                                     <span class="custom-radio"></span>
                                     <span>Orange</span>
+                                    <span class="radio-arrow"></span>
                                 </label>
                             </div>
 
@@ -62,20 +66,28 @@ export const getSettingsScreenHTML = (): string => {
                             <legend class="settings-label">
                                 <div class="legend-content">
                                     <img class="settings-icon" src="./assets/icons/ui/settings_panel.svg" alt="settings icon" />
-                                    <span>Choose player</span>
+                                    <span>Board size</span>
                                 </div>
                             </legend>
 
                             <div class="options">
-                                <label class="option-item">
-                                    <input type="radio" name="chosenPlayer" value="blue" checked>
+                                <label class="option-item option-item--with-arrow">
+                                    <input type="radio" name="gameBoardSize" value="16" checked>
                                     <span class="custom-radio"></span>
-                                    <span>Blue</span>
+                                    <span>16 cards</span>
+                                    <span class="radio-arrow"></span>
                                 </label>
-                                <label class="option-item">
-                                    <input type="radio" name="chosenPlayer" value="orange">
+                                <label class="option-item option-item--with-arrow">
+                                    <input type="radio" name="gameBoardSize" value="24">
                                     <span class="custom-radio"></span>
-                                    <span>Orange</span>
+                                    <span>24 cards</span>
+                                    <span class="radio-arrow"></span>
+                                </label>
+                                <label class="option-item option-item--with-arrow">
+                                    <input type="radio" name="gameBoardSize" value="36">
+                                    <span class="custom-radio"></span>
+                                    <span>36 cards</span>
+                                    <span class="radio-arrow"></span>
                                 </label>
                             </div>
 
