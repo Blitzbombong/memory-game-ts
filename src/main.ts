@@ -26,27 +26,39 @@ function render() {
   if (!appRef) return;
 
   if (currentState === "start") {
-    appRef.innerHTML = getStartScreenHTML();
-    setupStartScreenListeners();
+    renderStartScreen(appRef);
   } else if (currentState === "settings") {
-    appRef.innerHTML = getSettingsScreenHTML();
-    setupSettingsScreenListeners((newSettings) => {
-      currentSettings = newSettings;
-      allCards = createDeck(currentSettings.boardSize);
-      currentState = "in-game";
-      render();
-    });
+   renderSettingsScreen(appRef);
   } else if (currentState === "in-game") {
-    appRef.innerHTML = getInGameScreenHTML(allCards);
-    setupGameListeners(
-      allCards, 
-      () => render(), // Was soll beim Klicken passieren? Neu zeichnen!
-      () => {         // Was soll beim Exit passieren?
-        currentState = 'settings'; // Zurück zu den Einstellungen
-        render(); 
-      }
-    );
+    renderInGameScreen(appRef);
   }
+}
+
+function renderStartScreen(appRef: HTMLElement) {
+  appRef.innerHTML = getStartScreenHTML();
+  setupStartScreenListeners();
+}
+
+function renderSettingsScreen(appRef: HTMLElement) {
+  appRef.innerHTML = getSettingsScreenHTML();
+  setupSettingsScreenListeners((newSettings) => {
+    currentSettings = newSettings;
+    allCards = createDeck(currentSettings.boardSize);
+    currentState = "in-game";
+    render();
+  });
+}
+
+function renderInGameScreen(appRef: HTMLElement) {
+  appRef.innerHTML = getInGameScreenHTML(allCards, currentSettings.theme);
+  const gameWrapper = document.querySelector(".game-layout-wrapper");
+  if (gameWrapper) {
+    gameWrapper.classList.add(`theme-${currentSettings.theme}`);
+  }
+  setupGameListeners(allCards, () => render(), () => {         
+    currentState = 'settings';
+    render(); 
+  });
 }
 
 function setupStartScreenListeners() {

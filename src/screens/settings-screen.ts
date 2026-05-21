@@ -1,5 +1,5 @@
 export const getSettingsScreenHTML = (): string => {
-  return `
+  return /*html*/ `
     <section class="settings-screen">
         <div class="settings-content-box">
             <header class="settings-title-group">

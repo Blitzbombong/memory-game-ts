@@ -1,6 +1,6 @@
-import { Card } from "../types/types";
+import { Card, GameSettings } from "../types/types";
 
-export const getInGameScreenHTML = (allCards: Card[]): string => {
+export const getInGameScreenHTML = (allCards: Card[], currentTheme: GameSettings["theme"]): string => {
   
   const cardsHTML = allCards.map(card => `
     <button class="card ${card.isFlipped ? 'is-flipped' : ''} ${card.isMatched ? 'is-matched' : ''}" data-id="${card.id}">

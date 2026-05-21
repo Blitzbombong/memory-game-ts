@@ -6,6 +6,8 @@
 @use './components/cards';
 @use './components/buttons'; 
 @use './components/status-bar';
+@use './components/_theme-code-vibes';
+@use './components/_theme-gaming';
 @use './layouts/start-screen';
 @use './layouts/settings-screen';
 @use './layouts/in-game-screen';

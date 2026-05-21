@@ -1,2 +1,24 @@
-@use '../abstracts/mixins' as m;
-@use '../abstracts/variables' as v;
+@use '../components/theme-code-vibes';
+@use '../components/theme-gaming';
+
+.in-game-screen {
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  
+  .game-header {
+    background-color: var(--header-bg-color);
+    border: 1px solid var(--header-btn-border);
+    box-shadow: 0 4px 10px var(--header-drop-shadow);
+  }
+
+  // Hier kommt dein Karten-Grid rein, das wir vorhin besprochen haben
+  .game-field {
+    display: grid;
+    // Das machen wir gleich noch dynamisch für 16, 24, 36 Karten!
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 2.0rem;
+    max-width: 80.0rem;
+    margin: 0 auto;
+  }
+}

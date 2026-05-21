@@ -1,0 +1,37 @@
+@use '../abstracts/variables' as v;
+
+.in-game-screen.theme-code-vibes {
+  --bg-color: linear-gradient(135deg, #6d6d6d 50%, #303131 50%);   
+  --text-color: #ffffff;
+  --font-family: #{v.$font-accent}; 
+
+  --header-bg-color: rgba(#4dd5bc, 0.2);
+  --header-drop-shadow: rgba(0, 0, 0, 0.2);
+  --header-play-item: rgba(#86e9d6, 0.3); 
+  
+  --header-btn-border: 1px solid #4dd5bc;
+  --header-btn-hover: 2px solid #4dd5bc; 
+  --header-btn-shadow: 0 0 10px rgba(#4dd5bc, 0.2);
+  --header-btn-icon-hover: none; 
+
+  --color-player-one: #{v.$color-orange-dark}; 
+  --color-player-two: #{v.$color-blue-dark};
+  --player-font-size: 0.8rem;
+  --current-player-font-size: 1.0rem;
+  --player-icon-size: 1.6rem;
+
+  --exit-font-size: 1.0rem;
+  --exit-font-weight: 700;
+  --back-to-game: #66cfbc;
+  --back-to-game-hover-border: 2px solid #3abca4;
+  --back-to-game-hover: rgba(#66cfbc, 0.2);
+
+  --card-back-color: linear-gradient(135deg, #286f62 50%, #4dd5bc 50%);
+  --card-font-color: #e8f3f0;
+  --card-border: none;         
+  --card-shadow: 0 0 10px rgba(#4dd5bc, 0.3);
+  --card-border-radius: 0; // Perfekt! Das gibt die scharfen Kanten für dieses Theme.
+
+  --card-matched-bg: #ffffff;
+  --card-matched-border: 5px solid #4dd5bc;
+}
