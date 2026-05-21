@@ -3,32 +3,41 @@ import { GameSettings } from "../types/types";
 export function setupSettingsScreenListeners(
   onPlay: (settings: GameSettings) => void,
 ): void {
-  initThemePreviewListener();
+  initRadioChangeListeners();
   initPlayButtonListener(onPlay);
+  checkIfFormIsValid();
 }
 
-function initThemePreviewListener(): void {
-  const themeRadios = document.querySelectorAll(
-    'input[name="gameTheme"]',
-  ) as NodeListOf<HTMLInputElement>;
-  const previewImg = document.getElementById(
-    "theme-preview",
-  ) as HTMLImageElement;
-
-  themeRadios.forEach((radio) => {
+function initRadioChangeListeners(): void {
+  const allRadios = document.querySelectorAll('.option-item input[type="radio"]');
+  allRadios.forEach((radio) => {
     radio.addEventListener("change", () => {
-      if (radio.checked && previewImg) {
-        previewImg.src = `./assets/${radio.value}-preview.png`;
-      }
+      checkIfFormIsValid();
     });
   });
 }
+
+function checkIfFormIsValid(): void {
+  const playBtn = document.getElementById("start-game-btn") as HTMLButtonElement;
+  if (!playBtn) return;
+  const themeChecked = document.querySelector('input[name="gameTheme"]:checked');
+  const playerChecked = document.querySelector('input[name="chosenPlayer"]:checked');
+  const sizeChecked = document.querySelector('input[name="gameBoardSize"]:checked');
+
+  if (themeChecked && playerChecked && sizeChecked) {
+    playBtn.removeAttribute("disabled");
+  } else {
+    playBtn.setAttribute("disabled", "true");
+  }
+}
+
 
 function initPlayButtonListener(
   onPlay: (settings: GameSettings) => void,
 ): void {
   const playBtn = document.getElementById("start-game-btn");
   playBtn?.addEventListener("click", () => {
+    if ((playBtn as HTMLButtonElement).hasAttribute("disabled")) return;
     const settings = getSelectedSettings();
     onPlay(settings);
   });
@@ -47,7 +56,7 @@ function getSelectedSettings(): GameSettings {
   ).value;
   const size = (
     document.querySelector(
-      'input[name="boardSize"]:checked',
+      'input[name="gameBoardSize"]:checked',
     ) as HTMLInputElement
   ).value;
 

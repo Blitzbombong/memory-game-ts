@@ -34,8 +34,8 @@
 
 @mixin parent {
   display: grid;
-  grid-template-columns: auto auto; 
-  grid-template-rows: 1fr;
-  justify-content: space-between;
-  gap: 3.2rem;
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: 4.0rem;
 }

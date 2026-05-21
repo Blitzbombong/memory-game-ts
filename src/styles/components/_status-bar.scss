@@ -1,0 +1,46 @@
+@use "../abstracts/variables" as v;
+
+.settings-start-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45.0rem;
+  padding: 1.2rem;
+  background-color: v.$color-light-gray;
+  border-radius: 1.2rem;
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 2.4rem;
+  margin-left: -6.0rem;
+  justify-self: end;
+
+  .status-indicators {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .status-item {
+    font-size: 2rem;
+    font-family: v.$font-main;
+    color: v.$color-bg;
+  }
+
+  .status-divider {
+    display: inline-block;
+    width: 2rem;
+    height: 4rem;
+    background-image: url("../assets/icons/ui/line_disablet.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: all 0.3s ease;
+  }
+
+  &:has(.btn-start:not([disabled])) {
+    .status-divider {
+      background-image: url("../assets/icons/ui/line_full.svg");
+      transform: scale(1.1);
+    }
+  }
+}

@@ -19,18 +19,18 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 4.0rem;
+    margin-bottom: 4rem;
 
     .settings-title {
-    font-size: 5.4rem;
-    font-family: v.$font-accent;
-    font-weight: 700;
-    color: v.$color-bg;
-    line-height: 100%;
+      font-size: 5.4rem;
+      font-family: v.$font-accent;
+      font-weight: 700;
+      color: v.$color-bg;
+      line-height: 100%;
     }
 
     .settings-divider {
-      width: 25.0rem;
+      width: 25rem;
       height: auto;
     }
   }
@@ -41,9 +41,8 @@
   }
 
   .settings-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .settings-group {
@@ -85,14 +84,30 @@
   .preview-panel {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-end; 
+    width: 100%;
+  }
 
-    img {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  .theme-preview-img {
+    display: none;
+    width: 100%;
+    max-width: 40rem;
+    height: auto;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .settings-layout-wrapper {
+    &:has(input[value="code-vibes"]:checked) {
+      .preview-panel #code-theme-preview {
+        display: block;
+      }
+    }
+
+    &:has(input[value="gaming"]:checked) {
+      .preview-panel #gaming-theme-preview {
+        display: block;
+      }
     }
   }
 }

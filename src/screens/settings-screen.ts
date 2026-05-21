@@ -2,12 +2,12 @@ export const getSettingsScreenHTML = (): string => {
   return `
     <section class="settings-screen">
         <div class="settings-content-box">
-            <div class="settings-title-group">
+            <header class="settings-title-group">
                 <h1 class="settings-title">Settings</h1>
                 <img class="settings-divider" src="./assets/icons/ui/line_1.svg" alt="" />
-            </div>
+            </header>
 
-                <div class="settings-layout-wrapper">
+                <main class="settings-layout-wrapper">
                     <div class="settings-controls">
                         <fieldset class="settings-group">
   
@@ -20,7 +20,7 @@ export const getSettingsScreenHTML = (): string => {
 
                             <div class="options">
                                 <label class="option-item option-item--with-arrow">
-                                    <input type="radio" name="gameTheme" value="code vibes">
+                                    <input type="radio" name="gameTheme" value="code-vibes" checked>
                                     <span class="custom-radio"></span>
                                     <span>Code vibes theme</span>
                                     <span class="radio-arrow"></span>
@@ -72,7 +72,7 @@ export const getSettingsScreenHTML = (): string => {
 
                             <div class="options">
                                 <label class="option-item option-item--with-arrow">
-                                    <input type="radio" name="gameBoardSize" value="16" checked>
+                                    <input type="radio" name="gameBoardSize" value="16">
                                     <span class="custom-radio"></span>
                                     <span>16 cards</span>
                                     <span class="radio-arrow"></span>
@@ -94,14 +94,27 @@ export const getSettingsScreenHTML = (): string => {
                         </fieldset>
                     </div>
 
-                    <div class="preview-panel">
-                        <img id="code-theme-preview" src="./assets/images/code_theme.svg"/>
-                        <!--<img id="gaming-theme-preview" src="./assets/images/gaming_theme.svg" alt="Gaming theme preview"/>-->
-                    </div>
-                </div>
+                    <figure class="preview-panel">
+                        <img id="code-theme-preview" class="theme-preview-img" src="./assets/images/code_theme.svg" alt="Code theme preview"/>
+                        <img id="gaming-theme-preview" class="theme-preview-img" src="./assets/images/gaming_theme.svg" alt="Gaming theme preview"/>
 
-            <!-- Der Button zum Starten unter dem Layout-Wrapper -->
-            <button class="play-button" id="start-game-btn">Play</button>
+                        <div class="settings-start-bar">
+                            <div class="status-indicators">
+                                <span class="status-item" id="status-theme">Theme</span>
+                                <span class="status-divider"></span>
+                                <span class="status-item" id="status-player">Player</span>
+                                <span class="status-divider"></span>
+                                <span class="status-item" id="status-size">Board size</span>
+                            </div>
+                            
+                            <button class="btn-start" id="start-game-btn" disabled>
+                                <img src="./assets/icons/ui/play_icon.svg" alt="" />
+                                <span>Start</span>
+                            </button>
+                        </div>
+                    </figure>
+
+                </main>
         </div>
     </section>
   `;

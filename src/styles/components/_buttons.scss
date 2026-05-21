@@ -1,2 +1,33 @@
-@use '../abstracts/mixins' as m;
-@use '../abstracts/variables' as v;
+@use "../abstracts/variables" as v;
+
+.btn-start {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.6rem;
+  margin-left: 1.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  font-family: v.$font-accent;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 100%;
+  color: v.$color-bg;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:disabled {
+    background-color: v.$color-gray;
+    color: v.$color-light-gray;
+    cursor: not-allowed;
+  }
+
+  &:not([disabled]) {
+    background-color: v.$color-yellow;
+    color: v.$color-bg;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
