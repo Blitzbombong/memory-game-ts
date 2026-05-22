@@ -1,7 +1,21 @@
 import { Card, GameSettings } from "../types/types";
+import { ThemeIcons } from '../types/types';
+
+const themeIcons: ThemeIcons = {
+  'code-vibes': {
+    playerOne: './assets/icons/ui/label_blue.svg',
+    playerTwo: './assets/icons/ui/label_orange.svg',
+    exit: './assets/icons/ui/exit_with.svg'
+  },
+  'gaming': {
+    playerOne: './assets/icons/ui/label_blue.svg',
+    playerTwo: './assets/icons/ui/label_orange.svg',
+    exit: './assets/icons/ui/exit_with.svg'
+  }
+};
 
 export const getInGameScreenHTML = (allCards: Card[], currentTheme: GameSettings["theme"]): string => {
-  
+  const icons = themeIcons[currentTheme];
   const cardsHTML = allCards.map(card => `
     <button class="card ${card.isFlipped ? 'is-flipped' : ''} ${card.isMatched ? 'is-matched' : ''}" data-id="${card.id}">
       <div class="card__inner">
@@ -14,15 +28,15 @@ export const getInGameScreenHTML = (allCards: Card[], currentTheme: GameSettings
   `).join('');
 
   return `
-    <section class="in-game-screen">
+    <section class="in-game-screen theme-${currentTheme}">
       <header class="game-header">
         <div class="score-board">
           <div class="score-item blue-player">
-            <img src="./assets/icons/icon-blue.svg" alt="Blue Icon" class="player-icon">
+            <img src="${icons.playerOne}" alt="Blue Icon" class="player-icon">
             <span id="score-blue" class="score-value">0</span>
           </div>
           <div class="score-item orange-player">
-            <img src="./assets/icons/icon-orange.svg" alt="Orange Icon" class="player-icon">
+            <img src="${icons.playerTwo}" alt="Orange Icon" class="player-icon">
             <span id="score-orange" class="score-value">0</span>
           </div>
         </div>
@@ -30,13 +44,13 @@ export const getInGameScreenHTML = (allCards: Card[], currentTheme: GameSettings
         <div class="current-player-status">
           <span class="status-label">Current player:</span>
           <div id="active-player-display" class="player-indicator">
-            <img src="./assets/icons/icon-blue.svg" alt="Current Player" class="active-icon">
+            <img src="${icons.playerOne}" alt="Current Player" class="active-icon">
           </div>
         </div>
 
         <div class="game-actions">
           <button id="exit-game-btn" class="exit-button">
-            <img src="./assets/icons/icon-exit.svg" alt="Exit" class="btn-icon">
+            <img src="${icons.exit}" alt="Exit" class="btn-icon">
             <span>Exit game</span>
           </button>
         </div>

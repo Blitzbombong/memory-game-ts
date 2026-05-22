@@ -12,3 +12,11 @@ export interface Card {
   isFlipped: boolean; 
   isMatched: boolean; 
 }
+
+export interface IconSet {
+  playerOne: string;
+  playerTwo: string;
+  exit: string;
+}
+
+export type ThemeIcons = Record<GameSettings['theme'], IconSet>;

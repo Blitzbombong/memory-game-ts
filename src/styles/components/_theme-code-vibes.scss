@@ -1,37 +1,49 @@
 @use '../abstracts/variables' as v;
 
-.in-game-screen.theme-code-vibes {
+.theme-code-vibes {
+  // === Hintergründe & Layout ===
   --bg-color: linear-gradient(135deg, #6d6d6d 50%, #303131 50%);   
   --text-color: #ffffff;
   --font-family: #{v.$font-accent}; 
 
-  --header-bg-color: rgba(#4dd5bc, 0.2);
-  --header-drop-shadow: rgba(0, 0, 0, 0.2);
-  --header-play-item: rgba(#86e9d6, 0.3); 
+  // === Header Layout ===
+  --header-bg-color: #4dd5bc33;          // 20% Transparenz
+  --header-drop-shadow: #00000033;       // rgba(0,0,0, 0.2) -> 20% Transparenz
+  --header-play-item: #86e9d64d;         // rgba(#86e9d6, 0.3) -> 30% Transparenz
+  --header-play-item-radius: 0;          // KORRIGIERT: 0 statt none
+  --header-border-radius: 0;             // KORRIGIERT: 0 statt none
   
+  // === Header Buttons ===
+  --header-btn-color: transparent;       // KORRIGIERT: transparent statt none
   --header-btn-border: 1px solid #4dd5bc;
   --header-btn-hover: 2px solid #4dd5bc; 
-  --header-btn-shadow: 0 0 10px rgba(#4dd5bc, 0.2);
-  --header-btn-icon-hover: none; 
+  --header-btn-shadow: 0 0 10px #4dd5bc33; // 20% Transparenz
+  --header-btn-icon-hover: none;
+  --header-btn-border-radius: 0;         // KORRIGIERT: 0 statt none
 
+  // === Spieler-Anzeige ===
   --color-player-one: #{v.$color-orange-dark}; 
   --color-player-two: #{v.$color-blue-dark};
   --player-font-size: 0.8rem;
   --current-player-font-size: 1.0rem;
   --player-icon-size: 1.6rem;
 
+  // === Exit-Button & Navigation ===
   --exit-font-size: 1.0rem;
   --exit-font-weight: 700;
   --back-to-game: #66cfbc;
   --back-to-game-hover-border: 2px solid #3abca4;
-  --back-to-game-hover: rgba(#66cfbc, 0.2);
+  --back-to-game-hover: #66cfbc33;       // rgba(#66cfbc, 0.2) -> 20% Transparenz
 
+  // === Die Memory-Karten ===
   --card-back-color: linear-gradient(135deg, #286f62 50%, #4dd5bc 50%);
   --card-font-color: #e8f3f0;
   --card-border: none;         
-  --card-shadow: 0 0 10px rgba(#4dd5bc, 0.3);
-  --card-border-radius: 0; // Perfekt! Das gibt die scharfen Kanten für dieses Theme.
+  --card-shadow: 0 0 10px #4dd5bc4d;     // rgba(#4dd5bc, 0.3) -> 30% Transparenz
+  --card-border-radius: 0;               // Absolut scharfe Kanten!
 
+  // === Gefundene Paare (Matched) ===
   --card-matched-bg: #ffffff;
   --card-matched-border: 5px solid #4dd5bc;
+  --card-matched-shadow: 0 0 10px #ed1b764d; // KORRIGIERT: Eigener Name, sonst wurde der Kartenschatten überschrieben!
 }
