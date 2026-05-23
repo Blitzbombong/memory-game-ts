@@ -1,19 +1,21 @@
-@use '../components/theme-code-vibes';
-@use '../components/theme-gaming';
+@use "../components/theme-code-vibes";
+@use "../components/theme-gaming";
 
 .in-game-screen {
   min-height: 100vh;
-  max-width: 120.0rem;
   margin: 0 auto;
   background: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-family), sans-serif;
-  padding: 2.0rem 4.0rem;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
-  transition: background 0.4s ease, color 0.4s ease;
+  align-items: center;
   
+  // === 2. DER HEADER (Alle UI-Elemente gehören hier rein!) ===
   .game-header {
+    max-width: 120rem;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,48 +23,111 @@
     border-radius: var(--header-border-radius);
     background: var(--header-bg-color);
     box-shadow: 0 4px 15px var(--header-drop-shadow);
-    margin-bottom: 3.0rem;
+    margin-bottom: 3rem;
 
+    // Das Scoreboard (Links)
     .score-board {
       display: flex;
-      gap: 2.0rem;
+      gap: 1.5rem;
+      background: var(--header-play-item);
 
       .score-item {
         display: flex;
         align-items: center;
-        gap: 1.0rem;
+        gap: 0.8rem;
         padding: 0.8rem 1.6rem;
         font-size: var(--player-font-size);
-        background: var(--header-play-item);
         border-radius: var(--header-play-item-radius);
-        font-weight: 600;
-
-        &.blue-player {
-          color: var(--color-player-two);
-        }
-
-        &.orange-player {
-          color: var(--color-player-one);
-        }
+        font-weight: 700;
 
         .player-icon {
           width: var(--player-icon-size);
           height: var(--player-icon-size);
-          border-radius: 50%;
-          background-color: currentColor;
-          box-shadow: 0 0 5px currentColor;
+        }
+
+        .score-value {
+          font-weight: 700;
+          font-size: 1.2rem;
+          color: var(--text-color); // Standardfarbe
+        }
+
+        // Korrigierte Farbekennung für die Scores
+        &.blue-player {
+          .score-value {
+            color: var(--color-score-blue);
+          }
+        }
+        &.orange-player {
+          .score-value {
+            color: var(--color-score-orange);
+          }
         }
       }
     }
+
+    // Aktueller Spieler (Mitte) - JETZT RICHTIG IM HEADER VERSCHACHTELT
+    .current-player-status {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: var(--current-player-font-size);
+      font-weight: var(--current-player-font-weight);
+
+      .active-player {
+        width: var(--player-icon-size);
+        height: var(--player-icon-size);
+        object-fit: contain;
+      }
+    }
+
+    // Exit Button (Rechts) - JETZT RICHTIG IM HEADER VERSCHACHTELT
+    .exit-button {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--header-btn-color);
+      border: var(--header-btn-border);
+      color: var(--text-color);
+      border-radius: var(--header-btn-border-radius);
+      padding: 0.8rem 1.6rem;
+      font-size: var(--exit-font-size);
+      font-weight: var(--exit-font-weight);
+      cursor: pointer;
+      box-shadow: var(--header-btn-shadow);
+
+      .exit-icon {
+        width: var(--exit-icon-size);
+        height: var(--exit-icon-size);
+        object-fit: contain;
+      }
+
+      &:hover {
+        background: var(--back-to-game-hover);
+        outline: var(--header-btn-hover);
+        outline-offset: -2px;
+      }
+    }
+  } // <-- Hier schließt sich der .game-header erst!
+
+  // === 3. MAIN & GAME FIELD (Werden jetzt wieder vom Browser gelesen!) ===
+  main {
+    max-width: 120rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
   }
 
-  
   .game-field {
     display: grid;
-    // Das machen wir gleich noch dynamisch für 16, 24, 36 Karten!
-    grid-template-columns: repeat(4, 1fr); 
     gap: 2.0rem;
-    max-width: 80.0rem;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 80rem;
+    justify-items: center;
+
+    &.grid-16 { grid-template-columns: repeat(4, 1fr); }
+    &.grid-24 { grid-template-columns: repeat(6, 1fr); }
+    &.grid-36 { grid-template-columns: repeat(6, 1fr); }
   }
 }

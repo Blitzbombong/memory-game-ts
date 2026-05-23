@@ -8,15 +8,16 @@ const themeIcons: ThemeIcons = {
     exit: './assets/icons/ui/exit_with.svg'
   },
   'gaming': {
-    playerOne: './assets/icons/ui/label_blue.svg',
-    playerTwo: './assets/icons/ui/label_orange.svg',
+    playerOne: './assets/icons/ui/blue_player.svg',
+    playerTwo: './assets/icons/ui/orange_player.svg',
     exit: './assets/icons/ui/exit_with.svg'
   }
 };
 
 export const getInGameScreenHTML = (allCards: Card[], currentTheme: GameSettings["theme"]): string => {
+  const boardSize = allCards.length as GameSettings['boardSize'];
   const icons = themeIcons[currentTheme];
-  const cardsHTML = allCards.map(card => `
+  const cardsHTML = allCards.map(card =>  /*html*/ `
     <button class="card ${card.isFlipped ? 'is-flipped' : ''} ${card.isMatched ? 'is-matched' : ''}" data-id="${card.id}">
       <div class="card__inner">
         <div class="card__face card__face--front"></div>
@@ -27,17 +28,17 @@ export const getInGameScreenHTML = (allCards: Card[], currentTheme: GameSettings
     </button>
   `).join('');
 
-  return `
+  return /*html*/ `
     <section class="in-game-screen theme-${currentTheme}">
       <header class="game-header">
         <div class="score-board">
           <div class="score-item blue-player">
             <img src="${icons.playerOne}" alt="Blue Icon" class="player-icon">
-            <span id="score-blue" class="score-value">0</span>
+            <span id="score-blue" class="score-value">Blue 0</span>
           </div>
           <div class="score-item orange-player">
             <img src="${icons.playerTwo}" alt="Orange Icon" class="player-icon">
-            <span id="score-orange" class="score-value">0</span>
+            <span id="score-orange" class="score-value">Orange 0</span>
           </div>
         </div>
 
@@ -57,11 +58,7 @@ export const getInGameScreenHTML = (allCards: Card[], currentTheme: GameSettings
       </header>
 
       <main>
-        <div class="game-info">
-          <p>Turn: <span class="turn">1</span></p>
-          <p>Pairs found: <span class="score">0</span></p>
-        </div>
-        <div class="game-field" id="game-grid">
+        <div class="game-field grid-${boardSize}" id="game-grid">
           ${cardsHTML} 
         </div>
       </main>

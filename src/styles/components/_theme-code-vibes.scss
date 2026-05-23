@@ -1,14 +1,13 @@
 @use '../abstracts/variables' as v;
 
 .theme-code-vibes {
-  // === Hintergründe & Layout ===
   --bg-color: linear-gradient(135deg, #6d6d6d 50%, #303131 50%);   
   --text-color: #ffffff;
   --font-family: #{v.$font-accent}; 
 
   // === Header Layout ===
-  --header-bg-color: #4dd5bc33;          // 20% Transparenz
-  --header-drop-shadow: #00000033;       // rgba(0,0,0, 0.2) -> 20% Transparenz
+  --header-bg-color: none;          // 20% Transparenz
+  --header-drop-shadow: none;       // rgba(0,0,0, 0.2) -> 20% Transparenz
   --header-play-item: #86e9d64d;         // rgba(#86e9d6, 0.3) -> 30% Transparenz
   --header-play-item-radius: 0;          // KORRIGIERT: 0 statt none
   --header-border-radius: 0;             // KORRIGIERT: 0 statt none
@@ -22,14 +21,15 @@
   --header-btn-border-radius: 0;         // KORRIGIERT: 0 statt none
 
   // === Spieler-Anzeige ===
-  --color-player-one: #{v.$color-orange-dark}; 
-  --color-player-two: #{v.$color-blue-dark};
-  --player-font-size: 0.8rem;
-  --current-player-font-size: 1.0rem;
-  --player-icon-size: 1.6rem;
+  --color-score-orange: #{v.$color-orange-dark}; 
+  --color-score-blue: #{v.$color-blue-dark};
+  --player-font-size: 2.0rem;
+  --current-player-font-size: 2.4rem;
+  --current-player-font-weight: 700;
+  --player-icon-size: 2.4rem;
 
   // === Exit-Button & Navigation ===
-  --exit-font-size: 1.0rem;
+  --exit-font-size: 2.4rem;
   --exit-font-weight: 700;
   --back-to-game: #66cfbc;
   --back-to-game-hover-border: 2px solid #3abca4;
