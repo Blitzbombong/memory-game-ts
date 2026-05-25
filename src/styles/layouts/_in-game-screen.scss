@@ -11,8 +11,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  // === 2. DER HEADER (Alle UI-Elemente gehören hier rein!) ===
+
+  // === 2. DER HEADER ===
   .game-header {
     max-width: 120rem;
     width: 100%;
@@ -28,59 +28,64 @@
     // Das Scoreboard (Links)
     .score-board {
       display: flex;
-      gap: 1.5rem;
+      gap: 0.8rem;
       background: var(--header-play-item);
+      border-radius: var(--player-border-radius);
 
       .score-item {
         display: flex;
         align-items: center;
         gap: 0.8rem;
         padding: 0.8rem 1.6rem;
-        font-size: var(--player-font-size);
-        border-radius: var(--header-play-item-radius);
+        font-size: var(--score-player-size);
         font-weight: 700;
 
         .player-icon {
-          width: var(--player-icon-size);
-          height: var(--player-icon-size);
+          width: var(--icon-font-weight);
+          height: var(--icon-font-height);
         }
 
         .score-value {
           font-weight: 700;
-          font-size: 1.2rem;
-          color: var(--text-color); // Standardfarbe
+          font-size: var(--score-player-size);
+          color: var(--text-color);
+
+          // Standardmäßig für alle Themes verstecken
+          .player-name {
+            display: none;
+          }
         }
 
-        // Korrigierte Farbekennung für die Scores
         &.blue-player {
           .score-value {
-            color: var(--color-score-blue);
+            color: var(--color-player-one);
           }
         }
         &.orange-player {
           .score-value {
-            color: var(--color-score-orange);
+            color: var(--color-player-two);
           }
         }
       }
     }
 
-    // Aktueller Spieler (Mitte) - JETZT RICHTIG IM HEADER VERSCHACHTELT
+    // Aktueller Spieler (Mitte)
     .current-player-status {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       font-size: var(--current-player-font-size);
       font-weight: var(--current-player-font-weight);
+      margin-top: var(--current-player-margin-top);
 
-      .active-player {
-        width: var(--player-icon-size);
-        height: var(--player-icon-size);
+      .active-icon {
+        width: var(--score-icon-width);
+        height: var(--score-icon-height);
         object-fit: contain;
       }
     }
 
-    // Exit Button (Rechts) - JETZT RICHTIG IM HEADER VERSCHACHTELT
+    // Exit Button (Rechts)
     .exit-button {
       display: flex;
       align-items: center;
@@ -96,8 +101,8 @@
       box-shadow: var(--header-btn-shadow);
 
       .exit-icon {
-        width: var(--exit-icon-size);
-        height: var(--exit-icon-size);
+        width: var(--exit-font-icon-weight);
+        height: var(--exit-font-icon-height);
         object-fit: contain;
       }
 
@@ -107,9 +112,9 @@
         outline-offset: -2px;
       }
     }
-  } // <-- Hier schließt sich der .game-header erst!
+  }
 
-  // === 3. MAIN & GAME FIELD (Werden jetzt wieder vom Browser gelesen!) ===
+  // === 3. MAIN & GAME FIELD ===
   main {
     max-width: 120rem;
     display: flex;
@@ -121,13 +126,30 @@
 
   .game-field {
     display: grid;
-    gap: 2.0rem;
-    width: 100%;
-    max-width: 80rem;
+    gap: 0.8rem;
+    width: max-content;
+    max-width: 100%;
     justify-items: center;
+    margin: 2rem auto;
+    perspective: 1200px;
 
-    &.grid-16 { grid-template-columns: repeat(4, 1fr); }
-    &.grid-24 { grid-template-columns: repeat(6, 1fr); }
-    &.grid-36 { grid-template-columns: repeat(6, 1fr); }
+    &.grid-16 {
+      grid-template-columns: repeat(4, max-content);
+    }
+    &.grid-24 {
+      grid-template-columns: repeat(6, max-content);
+    }
+    &.grid-36 {
+      grid-template-columns: repeat(6, max-content);
+    }
+  }
+}
+
+// === BOMBEN-SICHER: Ganz unten am Ende der Datei (Außerhalb aller Klammern!) ===
+// Wenn der Wrapper die Klasse .theme-code-vibes hat, schalten wir JEDEN .player-name im Spiel auf sichtbar!
+.theme-code-vibes {
+  .player-name {
+    display: inline !important;
+    margin-right: 0.4rem;
   }
 }

@@ -1,49 +1,63 @@
 @use '../abstracts/variables' as v;
 
 .theme-code-vibes {
-  --bg-color: linear-gradient(135deg, #6d6d6d 50%, #303131 50%);   
+  // === Hintergründe & Layout ===
+  --bg-color: #303131;   
   --text-color: #ffffff;
   --font-family: #{v.$font-accent}; 
 
   // === Header Layout ===
-  --header-bg-color: none;          // 20% Transparenz
-  --header-drop-shadow: none;       // rgba(0,0,0, 0.2) -> 20% Transparenz
-  --header-play-item: #86e9d64d;         // rgba(#86e9d6, 0.3) -> 30% Transparenz
-  --header-play-item-radius: 0;          // KORRIGIERT: 0 statt none
-  --header-border-radius: 0;             // KORRIGIERT: 0 statt none
+  --header-bg-color: none;          
+  --header-drop-shadow: none;       
+  --header-play-item: #86e9d64d;         
+  --header-play-item-radius: 0;          
+  --header-border-radius: 0;             
   
   // === Header Buttons ===
-  --header-btn-color: transparent;       // KORRIGIERT: transparent statt none
+  --header-btn-color: transparent;      
   --header-btn-border: 1px solid #4dd5bc;
   --header-btn-hover: 2px solid #4dd5bc; 
-  --header-btn-shadow: 0 0 10px #4dd5bc33; // 20% Transparenz
+  --header-btn-shadow: 0 0 10px #4dd5bc33;
   --header-btn-icon-hover: none;
-  --header-btn-border-radius: 0;         // KORRIGIERT: 0 statt none
+  --header-btn-border-radius: 0;     
 
-  // === Spieler-Anzeige ===
-  --color-score-orange: #{v.$color-orange-dark}; 
-  --color-score-blue: #{v.$color-blue-dark};
-  --player-font-size: 2.0rem;
+  // === Spieler-Anzeige & Scoreboard ===
+  --color-score-blue: #{v.$color-blue-dark};   // KORRIGIERT: Einheitlicher Name für deine Schriftfarbe!
+  --color-score-orange: #{v.$color-orange-dark}; // KORRIGIERT: Einheitlicher Name für deine Schriftfarbe!
+  --color-player-one: #{v.$color-blue-dark};
+  --color-player-two: #{v.$color-orange-dark};
+  --player-font-size: 2.4rem;                  // Synchronisiert mit Gaming
+  --player-icon-size: 2.4rem;                  // Synchronisiert mit Gaming
+  --player-border-radius: 0;                   // Synchronisiert mit Gaming
+  --icon-font-weight: 2.4rem;
+  --icon-font-height: 2.0rem;
   --current-player-font-size: 2.4rem;
   --current-player-font-weight: 700;
-  --player-icon-size: 2.4rem;
+  --current-player-margin-top: 2.0rem;
+  --score-icon-width: 2.9rem;
+  --score-icon-height: 2.4rem;
+  --score-player-size: 2.4rem;
 
   // === Exit-Button & Navigation ===
   --exit-font-size: 2.4rem;
+  --exit-font-icon-weight: 3.0rem;
+  --exit-font-icon-height: 3.0rem;
   --exit-font-weight: 700;
   --back-to-game: #66cfbc;
   --back-to-game-hover-border: 2px solid #3abca4;
-  --back-to-game-hover: #66cfbc33;       // rgba(#66cfbc, 0.2) -> 20% Transparenz
+  --back-to-game-hover: #66cfbc33;       
 
   // === Die Memory-Karten ===
-  --card-back-color: linear-gradient(135deg, #286f62 50%, #4dd5bc 50%);
+  --card-back-color: linear-gradient(45deg, #286f62 10%, #4dd5bc 102%);
   --card-font-color: #e8f3f0;
   --card-border: none;         
-  --card-shadow: 0 0 10px #4dd5bc4d;     // rgba(#4dd5bc, 0.3) -> 30% Transparenz
-  --card-border-radius: 0;               // Absolut scharfe Kanten!
+  --card-shadow: 0 0 10px #4dd5bc4d;     
+  --card-border-radius: 0; 
+  --card-width: 120px;
+  --card-height: 120px;              
 
   // === Gefundene Paare (Matched) ===
   --card-matched-bg: #ffffff;
   --card-matched-border: 5px solid #4dd5bc;
-  --card-matched-shadow: 0 0 10px #ed1b764d; // KORRIGIERT: Eigener Name, sonst wurde der Kartenschatten überschrieben!
+  --card-matched-shadow: 0 0 10px #ed1b764d; 
 }

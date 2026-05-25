@@ -4,7 +4,7 @@ export interface GameSettings {
   boardSize: 16 | 24 | 36;
 }
 
-export type GameState = 'start' | 'settings' | 'in-game' | 'game-over';
+export type GameState = 'start' | 'settings' | 'in-game' | 'result';
 
 export interface Card {
   id: number;
@@ -19,4 +19,13 @@ export interface IconSet {
   exit: string;
 }
 
+export interface GameResultData {
+  type: 'win' | 'game-over';
+  winnerName?: string;
+  winnerColor?: 'blue' | 'orange';
+  scores: {
+    blue: number;
+    orange: number;
+  };
+}
 export type ThemeIcons = Record<GameSettings['theme'], IconSet>;
