@@ -1,34 +1,30 @@
-@use '../abstracts/variables' as v;
+@use "../abstracts/variables" as v;
 
 .theme-gaming {
-  // === Hintergründe & Layout ===
-  --bg-color: #294f60;   
+  --bg-color: #294f60;
   --text-color: #ffffff;
-  --font-family: #{v.$font-code}; 
+  --font-family: #{v.$font-code};
 
-  // === Header Layout ===
-  --header-bg-color: #fd96c933;          
-  --header-drop-shadow: #00000033;       
+  --header-bg-color: #fd96c933;
+  --header-drop-shadow: #00000033;
   --header-play-item: #ffffff;
   --header-play-item-radius: 0.4rem;
-  --header-border-radius: 1.0rem; 
-  
-  // === Header Buttons ===
-  --header-btn-color: #ed1b76cc;         
-  --header-btn-border: 1px solid #e71c4f;
-  --header-btn-hover: 2px solid #e71c4f; 
-  --header-btn-shadow: 0 0 10px #e71c4f33; 
-  --header-btn-icon-hover: #ed1b76;      
-  --header-btn-border-radius: 1.0rem;
+  --header-border-radius: 1rem;
 
-  // === Spieler-Anzeige & Scoreboard ===
-  --color-score-blue: #{v.$color-blue-dark};   // JETZT DABEI: Exakt der gleiche Name!
-  --color-score-orange: #{v.$color-orange-dark}; // JETZT DABEI: Exakt der gleiche Name!
+  --header-btn-color: #ed1b7614;
+  --header-btn-border: 1px solid #e71c4f;
+  --header-btn-hover: 2px solid #e71c4f;
+  --header-btn-shadow: #e71c4f33;
+  --header-btn-icon-hover: #ed1b76;
+  --header-btn-border-radius: 1rem;
+
+  --color-score-blue: #{v.$color-blue-dark};
+  --color-score-orange: #{v.$color-orange-dark};
   --color-player-one: #{v.$color-blue-dark};
   --color-player-two: #{v.$color-orange-dark};
   --player-font-size: 0.8rem;
   --player-icon-size: 1.6rem;
-  --player-border-radius: 1.0rem;
+  --player-border-radius: 1rem;
   --icon-font-weight: 2.2rem;
   --icon-font-height: 2.8rem;
   --current-player-font-size: 3.2rem;
@@ -36,28 +32,33 @@
   --current-player-margin-top: 0;
   --score-player-size: 2.4rem;
   --score-icon-width: 2.5rem;
+  --score-board-width: 20rem;
   --score-icon-height: 3.2rem;
+  --indicator-bg: var(--current-player-color) !important;
+  --indicator-shadow: 0 0 10px var(--current-player-color) !important;
+  --active-icon-filter: brightness(0) invert(1);
+  --indicator-icon-width: 4.1rem;
+  --indicator-icon-height: 4rem;
 
-  // === Exit-Button & Navigation ===
-  --exit-font-size: 1.0rem;
-  --exit-font-icon-weight: 3.0rem;            // JETZT DABEI: Aus Code-Vibes gespiegelt
-  --exit-font-icon-height: 3.0rem;            // JETZT DABEI: Aus Code-Vibes gespiegelt
+  --exit-font-size: 2rem;
+  --exit-font-icon-weight: 3rem;
+  --exit-font-icon-height: 3rem;
   --exit-font-weight: 700;
-  --back-to-game: #ed1b76;
+  --back-to-game: #ed1b7620;
+  --exit-icon-hover-filter: brightness(0) saturate(100%) invert(24%) sepia(85%)
+    saturate(5709%) hue-rotate(335deg) brightness(93%) contrast(94%);
   --back-to-game-hover-border: 2px solid #ed1b76;
   --back-to-game-hover: #f6f1f3;
 
-  // === Die Memory-Karten ===
-  --card-back-color: linear-gradient(135deg, #ed1b76 50%, #0a2835 50%);
+  --card-back-color: linear-gradient(216deg, #ed1b76 17%, #0a2835 121%);
   --card-font-color: #f6f1f3;
-  --card-border: none;         
-  --card-shadow: 0 0 10px #00000040;     
-  --card-border-radius: 0;               
+  --card-border: none;
+  --card-shadow: 0 0 25px 0 #00000040;
+  --card-border-radius: 1.2rem;
   --card-width: 105px;
   --card-height: 120px;
 
-  // === Gefundene Paare (Matched) ===
   --card-matched-bg: #f6f1f3;
   --card-matched-border: 3px solid #ed1b76;
-  --card-matched-shadow: 0 0 10px #ed1b764d; 
+  --card-matched-shadow: 0 0 25px 0 #ed1b764d;
 }

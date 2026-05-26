@@ -16,12 +16,15 @@ const themeIcons: ThemeIcons = {
 
 export const getInGameScreenHTML = (
   allCards: Card[],
-  currentTheme: GameSettings["theme"], scores: { blue: number; orange: number },
-  activePlayer: 'blue' | 'orange'
+  currentTheme: GameSettings["theme"],
+  scores: { blue: number; orange: number },
+  activePlayer: "blue" | "orange",
 ): string => {
   const boardSize = allCards.length as GameSettings["boardSize"];
   const icons = themeIcons[currentTheme];
-  const activePlayerIcon = activePlayer === 'blue' ? icons.playerOne : icons.playerTwo;
+  const activePlayerIcon =
+    activePlayer === "blue" ? icons.playerOne : icons.playerTwo;
+  const activeColorVar = activePlayer === "blue" ? "#00d2ff" : "#ff9f43";
 
   const cardsHTML = allCards
     .map(
@@ -58,14 +61,16 @@ export const getInGameScreenHTML = (
 
         <div class="current-player-status">
           <span class="status-label">Current player:</span>
-          <div id="active-player-display" class="player-indicator">
+          
+          <div id="active-player-display" class="player-indicator" style="--current-player-color: ${activeColorVar};">
             <img src="${activePlayerIcon}" alt="Current Player" class="active-icon">
           </div>
+          
         </div>
 
         <div class="game-actions">
           <button id="exit-game-btn" class="exit-button">
-            <img src="${icons.exit}" alt="Exit" class="btn-icon">
+            <img src="${icons.exit}" alt="Exit" class="exit-icon">
             <span>Exit game</span>
           </button>
         </div>
