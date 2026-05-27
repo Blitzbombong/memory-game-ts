@@ -1,0 +1,157 @@
+@use "../abstracts/variables" as v;
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+  .modal-content {
+    width: 53.9rem;
+    min-height: 27rem;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    // Die Standard-Werte lassen wir als Fallback, falls ein Theme sie nicht überschreibt:
+    background: #ffffff;
+    transform: translateY(100vh);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+  }
+
+  &.is-open {
+    opacity: 1;
+    pointer-events: all;
+
+    .modal-content {
+      transform: translateY(0);
+    }
+  }
+}
+
+.modal-title {
+  line-height: 1.4;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 5.4rem;
+  justify-content: center;
+  margin-top: 4rem;
+
+  .modal-btn {
+    padding: 1.2rem 2.4rem;
+    font-size: var(--exit-font-size);
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+}
+
+// =========================================================================
+// HIER SEIZEN WIR DEINE SCSS-VARIABLEN REIN!
+// =========================================================================
+
+// 1. FÜR DAS CODE-VIBES THEME
+.in-game-screen.theme-code-vibes {
+  // 👈 KORREKTUR: Hört jetzt direkt auf deine Section!
+  .modal-content {
+    background: var(--dialog-bg-color);
+    box-shadow: var(--dialog-shadow);
+    border-radius: var(--dialog-border-radius);
+  }
+
+  .modal-title {
+    font-family: #{v.$font-accent};
+    font-size: var(--dialog-font-size);
+    font-weight: var(--dialog-font-weight);
+    line-height: var(--dialog-line-height);
+    color: var(--dialog-font-color);
+    text-align: center;
+  }
+
+  .modal-actions {
+    .modal-btn {
+      border-radius: 0;
+
+      &.btn-primary {
+        background: #66cfbc;
+        color: #ffffff;
+        &:hover {
+          background: #66cfbcab;
+          box-shadow: inset 0 0 0 2px #4dd5bc;
+        }
+      }
+
+      &.btn-secondary {
+        background: #e2f5f1;
+        color: #4dd5bc;
+        border: 1px solid #4dd5bc;
+        &:hover {
+          background: #e2f5f1;
+          box-shadow:
+            inset 0 0 0 1px #4dd5bc,
+            0 8px 20px rgba(77, 213, 188, 0.25);
+        }
+      }
+    }
+  }
+}
+
+// 2. FÜR DAS GAMING THEME
+.in-game-screen.theme-gaming {
+  // 👈 KORREKTUR: Hört jetzt direkt auf deine Section!
+  .modal-content {
+    background: var(--dialog-bg-color);
+    box-shadow: var(--dialog-shadow);
+    border-radius: var(--dialog-border-radius);
+  }
+
+  .modal-title {
+    font-family: var(--dialog-font-family);
+    font-size: var(--dialog-font-size);
+    font-weight: var(--dialog-font-weight);
+    line-height: var(--dialog-line-height);
+    color: var(--dialog-font-color);
+  }
+
+  .modal-actions {
+    .modal-btn {
+      border-radius: 1rem;
+
+      &.btn-primary {
+        background: #e71c4f;
+        color: #ffffff;
+        border: 2px solid #e71c4f;
+        &:hover {
+          background: #b5123a;
+        }
+      }
+
+      &.btn-secondary {
+        background: rgba(231, 28, 79, 0.08);
+        color: #e71c4f;
+        border: 2px solid #e71c4f;
+        &:hover {
+          background: rgba(231, 28, 79, 0.2);
+        }
+      }
+    }
+  }
+}

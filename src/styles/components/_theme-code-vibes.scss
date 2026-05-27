@@ -59,4 +59,13 @@
   --card-matched-bg: #ffffff;
   --card-matched-border: 5px solid #4dd5bc;
   --card-matched-shadow: 0 0 10px #ed1b764d;
+
+  --dialog-bg-color: #ffffff;
+  --dialog-shadow: none;
+  --dialog-border-radius: 0;
+  --dialog-font-family: #{v.$font-accent};
+  --dialog-font-size: 3.2rem;
+  --dialog-font-weight: 700;
+  --dialog-font-color: #303131;
+  --dialog-line-height: 4rem;
 }

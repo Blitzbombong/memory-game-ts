@@ -4,11 +4,12 @@ import type { GameResultData } from "./types/types";
 import { getStartScreenHTML } from "./screens/start-screen";
 import { getSettingsScreenHTML } from "./screens/settings-screen";
 import { getInGameScreenHTML } from "./screens/in-game-screen";
+import { getExitDialogHTML } from "./screens/exit-dialog";
 import { getGameResultHTML } from "./screens/game-result-screen";
 import { setupSettingsScreenListeners } from "./logic/settings-logic";
 import { createDeck } from "./logic/game-logic";
 import { setupGameListeners } from "./logic/game-logic";
-import { initGame, getGameState, getGameResult} from "./logic/game-logic";
+import { initGame, getGameState, getGameResult } from "./logic/game-logic";
 
 let currentSettings: GameSettings = {
   theme: "code-vibes",
@@ -34,6 +35,14 @@ function render() {
     renderSettingsScreen(appRef);
   } else if (currentState === "in-game") {
     renderInGameScreen(appRef);
+    const inGameScreenRef = document.querySelector(".in-game-screen");
+
+    if (inGameScreenRef) {
+      inGameScreenRef.insertAdjacentHTML("beforeend", getExitDialogHTML());
+    } else {
+      appRef.insertAdjacentHTML("beforeend", getExitDialogHTML());
+    }
+    sutupExitDialogLogic();
   } else if (currentState === "result") {
     renderResultScreen(appRef);
   }
@@ -57,17 +66,53 @@ function renderSettingsScreen(appRef: HTMLElement) {
 
 function renderInGameScreen(appRef: HTMLElement) {
   const gameState = getGameState();
-  appRef.innerHTML = getInGameScreenHTML(allCards, currentSettings.theme, gameState.scores, gameState.activePlayer);
-  document.querySelector(".game-layout-wrapper")?.classList.add(`theme-${currentSettings.theme}`);
+  appRef.innerHTML = getInGameScreenHTML(
+    allCards,
+    currentSettings.theme,
+    gameState.scores,
+    gameState.activePlayer,
+  );
+  document
+    .querySelector(".game-layout-wrapper")
+    ?.classList.add(`theme-${currentSettings.theme}`);
   const result = getGameResult(allCards.length);
   if (result.isGameOver && result.winner) {
     gameWinner = result.winner; // Gewinner für gleich merken
-    currentState = "result";    // Zustand wechseln
-    render();                   // Zentrales Render aufrufen
-    return; 
+    currentState = "result"; // Zustand wechseln
+    render(); // Zentrales Render aufrufen
+    return;
   }
 
-  setupGameListeners(allCards, () => render(), () => {
+  setupGameListeners(
+    allCards,
+    () => render(),
+    () => {
+      const exitModal = document.getElementById("exit-modal");
+      if (exitModal) {
+        exitModal.classList.add("is-open");
+      }
+    },
+  );
+}
+
+function sutupExitDialogLogic() {
+  const exitGameBtn = document.getElementById("exit-game-btn");
+  const exitModal = document.getElementById("exit-modal");
+  const cancelExitBtn = document.getElementById("cancel-exit-btn");
+  const confirmExitBtn = document.getElementById("confirm-exit-btn");
+
+  if (!exitGameBtn || !exitModal || !cancelExitBtn || !confirmExitBtn) return;
+
+  exitGameBtn.addEventListener("click", () => {
+    exitModal.classList.add("is-open");
+  });
+
+  cancelExitBtn.addEventListener("click", () => {
+    exitModal.classList.remove("is-open");
+  });
+
+  confirmExitBtn.addEventListener("click", () => {
+    exitModal.classList.remove("is-open");
     currentState = "settings";
     render();
   });
@@ -78,17 +123,24 @@ function renderResultScreen(appRef: HTMLElement) {
 
   const resultData: GameResultData = {
     type: gameWinner === "draw" ? "game-over" : "win",
-    winnerName: gameWinner === "draw" ? "Draw" : gameWinner === "blue" ? "Player Blue" : "Player Orange",
+    winnerName:
+      gameWinner === "draw"
+        ? "Draw"
+        : gameWinner === "blue"
+          ? "Player Blue"
+          : "Player Orange",
     winnerColor: gameWinner !== "draw" ? gameWinner : undefined,
     scores: gameState.scores,
   };
 
   appRef.innerHTML = getGameResultHTML(resultData);
 
-  document.getElementById("back-to-start-btn")?.addEventListener("click", () => {
-    currentState = "start";
-    render();
-  });
+  document
+    .getElementById("back-to-start-btn")
+    ?.addEventListener("click", () => {
+      currentState = "start";
+      render();
+    });
 }
 
 function setupStartScreenListeners() {

@@ -55,10 +55,19 @@ function shuffle(array: any[]): any[] {
 export function setupGameListeners(
   allCards: Card[], 
   render: () => void, 
-  onExit: () => void
+  onExit: () => void // 👈 Das ist die Funktion, die das Modal öffnet!
 ): void {
   const gridRef = document.getElementById('game-grid');
+  
+  // === ERGÄNZUNG: Hier fangen wir den Klick auf den Exit-Button ab! ===
+  const exitBtnRef = document.getElementById('exit-game-btn'); // Nutzt die ID deines Exit-Buttons
+  if (exitBtnRef) {
+    exitBtnRef.onclick = () => {
+      onExit(); // 👈 Ruft die Logik auf, die ".is-open" an das Modal hängt!
+    };
+  }
 
+  // Dein bestehender Code für die Karten bleibt genau so, wie er ist:
   if (gridRef) {
     gridRef.addEventListener('click', (e) => {
       const cardElement = (e.target as HTMLElement).closest('.card') as HTMLButtonElement;
@@ -73,11 +82,6 @@ export function setupGameListeners(
       }
     });
   }
-
-  const exitBtn = document.getElementById('exit-game-btn');
-  exitBtn?.addEventListener('click', () => {
-    onExit();
-  });
 }
 
 function handleCardClick(card: Card, cardElement: HTMLButtonElement, render: () => void): void {
