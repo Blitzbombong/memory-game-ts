@@ -20,9 +20,9 @@ export interface IconSet {
 }
 
 export interface GameResultData {
-  type: 'win' | 'game-over';
+  type: 'win' | 'game-over' | 'draw';
   winnerName?: string;
-  winnerColor?: 'blue' | 'orange';
+  winnerColor?: 'blue' | 'orange' | 'draw';
   scores: {
     blue: number;
     orange: number;

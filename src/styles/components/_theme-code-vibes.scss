@@ -68,4 +68,15 @@
   --dialog-font-weight: 700;
   --dialog-font-color: #303131;
   --dialog-line-height: 4rem;
+
+  --result-bg-color: #303131;
+  --result-go-color: #4dd5bc;
+  --result-go-shadow: 0 8px 16px #4dd5bc80;
+  --result-btn-border: 1px solid #4dd5bc;
+  --result-font-family: #{v.$font-accent};
+  --result-font-size: 3.2rem;
+  --result-font-weight: 700;
+  --result-font-color: #303131;
+  --result-line-height: 4rem;
+  --result-padding: 4rem;
 }

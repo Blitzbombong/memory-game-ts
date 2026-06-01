@@ -1,2 +1,145 @@
 @use '../abstracts/mixins' as m;
 @use '../abstracts/variables' as v;
+
+.result-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.has-confetti {
+    background-image: url('/assets/images/ui/confetti.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+  }
+
+  .result-content-container {
+    width: 100%;
+    max-width: 120rem;
+    height: 100%;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+
+    .result-header {
+      margin-top: 2rem;
+
+      .winner-label, .draw-label {
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #ffffff;
+      }
+
+      .winner-name, .game-over-title, .draw-title {
+        font-size: 5.6rem;
+        font-weight: 800;
+        margin-top: 1rem;
+      }
+    }
+
+    .winner-illustration, .draw-illustration {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      
+      img {
+        height: 25vh;
+        max-height: 250px;
+        width: auto;
+      }
+    }
+
+    .score-summary {
+      padding: 2rem 4rem;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+
+      .final-score-label {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        color: #a0a0a0;
+        margin-bottom: 1rem;
+      }
+
+      .score-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 2rem;
+
+        .badge {
+          font-size: 2rem;
+          font-weight: 700;
+          padding: 0.8rem 2rem;
+          border-radius: 8px;
+          color: #ffffff;
+        }
+      }
+    }
+
+    .primary-button {
+      margin-bottom: 4rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}
+
+// =========================================================================
+// HIER SETZEN WIR DIE ANPASSUNGEN FÜR DIE THEMES REIN! 🎉
+// =========================================================================
+
+// 1. FÜR DAS CODE-VIBES THEME
+.result-overlay.theme-code-vibes {
+  background-color: var(--result-bg-color);
+
+  .winner-name, .game-over-title, .draw-title {
+    text-shadow: var(--result-go-shadow); // Dein Türkis-Schatten mit der 80 am Ende
+  }
+
+  .winner-name.color-blue { color: #4dd5bc; }
+  .winner-name.color-orange { color: #ff9f43; }
+
+  .score-summary {
+    background: #2b2c2c;
+    
+    .score-list .badge {
+      &.blue { background-color: #4dd5bc; }
+      &.orange { background-color: #ff9f43; }
+    }
+  }
+}
+
+// 2. FÜR DAS GAMING THEME
+.result-overlay.theme-gaming {
+  background-color: var(--result-bg-color); // Zieht die Gaming-Hintergrundfarbe
+
+  .winner-name, .game-over-title, .draw-title {
+    text-shadow: var(--result-go-shadow); // Der Gaming-Schatten (z.B. Pink/Rot)
+  }
+
+  .winner-name.color-blue { color: #00d2ff; }   // Gaming-Farben falls abweichend
+  .winner-name.color-orange { color: #e71c4f; }
+
+  .score-summary {
+    background: #1f252e; 
+    
+    .score-list .badge {
+      &.blue { background-color: #00d2ff; }
+      &.orange { background-color: #e71c4f; }
+    }
+  }
+}

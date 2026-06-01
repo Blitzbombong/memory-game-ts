@@ -38,11 +38,11 @@ function render() {
     const inGameScreenRef = document.querySelector(".in-game-screen");
 
     if (inGameScreenRef) {
-      inGameScreenRef.insertAdjacentHTML("beforeend", getExitDialogHTML());
+      inGameScreenRef.insertAdjacentHTML("beforeend", getExitDialogHTML(currentSettings.theme));
     } else {
-      appRef.insertAdjacentHTML("beforeend", getExitDialogHTML());
+      appRef.insertAdjacentHTML("beforeend", getExitDialogHTML(currentSettings.theme));
     }
-    sutupExitDialogLogic();
+    setupExitDialogLogic();
   } else if (currentState === "result") {
     renderResultScreen(appRef);
   }
@@ -95,7 +95,7 @@ function renderInGameScreen(appRef: HTMLElement) {
   );
 }
 
-function sutupExitDialogLogic() {
+function setupExitDialogLogic() {
   const exitGameBtn = document.getElementById("exit-game-btn");
   const exitModal = document.getElementById("exit-modal");
   const cancelExitBtn = document.getElementById("cancel-exit-btn");
@@ -119,28 +119,40 @@ function sutupExitDialogLogic() {
 }
 
 function renderResultScreen(appRef: HTMLElement) {
-  const gameState = getGameState();
+  const scores = getGameState().scores; // Holt nur noch die Scores aus dem State
+  
+  // 🟢 Wir nutzen direkt deine globale Variable für das Theme!
+  // Wenn deine Variable z.B. "code-vibes" speichert, wird daraus "theme-code-vibes"
+  const currentThemeClass = `theme-${currentSettings.theme}`; 
 
-  const resultData: GameResultData = {
-    type: gameWinner === "draw" ? "game-over" : "win",
-    winnerName:
-      gameWinner === "draw"
-        ? "Draw"
-        : gameWinner === "blue"
-          ? "Player Blue"
-          : "Player Orange",
-    winnerColor: gameWinner !== "draw" ? gameWinner : undefined,
-    scores: gameState.scores,
-  };
+  if (gameWinner === "draw") {
+    showResult(appRef, { type: "draw", scores }, currentThemeClass);
+    return;
+  }
 
-  appRef.innerHTML = getGameResultHTML(resultData);
+  // 1. Screen: Game over
+  showResult(appRef, { type: "game-over", scores }, currentThemeClass);
+  
+  // 2. Screen: Winner nach 3 Sekunden
+  setTimeout(() => {
+    showResult(appRef, {
+      type: "win",
+      winnerColor: gameWinner,
+      winnerName: gameWinner === "blue" ? "Player Blue" : "Player Orange",
+      scores
+    }, currentThemeClass);
+  }, 3000);
+}
 
-  document
-    .getElementById("back-to-start-btn")
-    ?.addEventListener("click", () => {
+function showResult(appRef: HTMLElement, data: GameResultData, currentThemeClass: string) {
+  appRef.innerHTML = getGameResultHTML(data, currentThemeClass);
+  
+  if (data.type !== "game-over") {
+    document.getElementById("back-to-start-btn")?.addEventListener("click", () => {
       currentState = "start";
       render();
     });
+  }
 }
 
 function setupStartScreenListeners() {

@@ -23,8 +23,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    // Die Standard-Werte lassen wir als Fallback, falls ein Theme sie nicht überschreibt:
     background: #ffffff;
     transform: translateY(100vh);
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2);
@@ -116,7 +114,6 @@
 
 // 2. FÜR DAS GAMING THEME
 .in-game-screen.theme-gaming {
-  // 👈 KORREKTUR: Hört jetzt direkt auf deine Section!
   .modal-content {
     background: var(--dialog-bg-color);
     box-shadow: var(--dialog-shadow);
@@ -129,27 +126,33 @@
     font-weight: var(--dialog-font-weight);
     line-height: var(--dialog-line-height);
     color: var(--dialog-font-color);
+    text-align: center;
   }
 
   .modal-actions {
     .modal-btn {
       border-radius: 1rem;
+      font-size: 1.6rem;
 
       &.btn-primary {
         background: #e71c4f;
         color: #ffffff;
         border: 2px solid #e71c4f;
         &:hover {
-          background: #b5123a;
+          background: #f0f6f9;
+          color:#e71c4f;
         }
       }
 
       &.btn-secondary {
         background: rgba(231, 28, 79, 0.08);
         color: #e71c4f;
-        border: 2px solid #e71c4f;
+        border: 1px solid #e71c4f;
         &:hover {
           background: rgba(231, 28, 79, 0.2);
+          box-shadow:
+            inset 0 0 0 2px #e71c4f,
+            0 5px 15px #294f6066;
         }
       }
     }
