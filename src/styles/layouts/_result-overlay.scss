@@ -13,13 +13,6 @@
   justify-content: center;
   align-items: center;
 
-  &.has-confetti {
-    background-image: url('/assets/images/ui/confetti.png');
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: contain;
-  }
-
   .result-content-container {
     width: 100%;
     max-width: 120rem;
@@ -28,12 +21,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center; // 🟢 Ändert alles auf perfekt mittig!
+    gap: 3rem;               // 🟢 Automatischer Abstand zwischen den Elementen
     text-align: center;
 
     .result-header {
-      margin-top: 2rem;
-
       .winner-label, .draw-label {
         font-size: 1.8rem;
         text-transform: uppercase;
@@ -46,13 +38,15 @@
         font-weight: 800;
         margin-top: 1rem;
       }
+
+      .winner-name.color-blue { color: var(--color-player-one); }
+      .winner-name.color-orange { color: var(--color-player-two); }
     }
 
     .winner-illustration, .draw-illustration {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-grow: 1;
       
       img {
         height: 25vh;
@@ -61,16 +55,13 @@
       }
     }
 
+    // 🟢 BASIS-LAYOUT FÜR DIE SCORE-BOX
     .score-summary {
       padding: 2rem 4rem;
-      border-radius: 16px;
-      margin-bottom: 2rem;
 
       .final-score-label {
         font-size: 1.4rem;
         text-transform: uppercase;
-        color: #a0a0a0;
-        margin-bottom: 1rem;
       }
 
       .score-list {
@@ -84,62 +75,118 @@
           font-size: 2rem;
           font-weight: 700;
           padding: 0.8rem 2rem;
-          border-radius: 8px;
           color: #ffffff;
+
+          &.blue { background-color: var(--color-player-one); }
+          &.orange { background-color: var(--color-player-two); }
         }
       }
     }
 
+    // 🟢 BASIS-LAYOUT FÜR DEN BUTTON
     .primary-button {
-      margin-bottom: 4rem;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+      border: none; // Entfernt Standard-Rahmen
     }
   }
 }
 
 // =========================================================================
-// HIER SETZEN WIR DIE ANPASSUNGEN FÜR DIE THEMES REIN! 🎉
+// HIER STYLES DU DIE THEMES INDIVIDUELL! 🎉
 // =========================================================================
 
 // 1. FÜR DAS CODE-VIBES THEME
 .result-overlay.theme-code-vibes {
   background-color: var(--result-bg-color);
 
-  .winner-name, .game-over-title, .draw-title {
-    text-shadow: var(--result-go-shadow); // Dein Türkis-Schatten mit der 80 am Ende
+  &.has-confetti {
+    background-image: url('../assets/icons/ui/win_confetti.svg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
   }
 
-  .winner-name.color-blue { color: #4dd5bc; }
-  .winner-name.color-orange { color: #ff9f43; }
+  .draw-label {
+    font-family: var(v.$font-accent);
+    font-size: 4rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
 
+  .winner-name {
+    font-family: var(v.$font-accent);
+    font-size: 6rem;
+    font-weight: 700;
+  }
+
+  // 🟢 DEIN STYLING FÜR DIE CODE-VIBES SCORE-BOX
   .score-summary {
     background: #2b2c2c;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+
+    .final-score-label {
+      color: #a0a0a0;
+      margin-bottom: 1rem;
+    }
     
     .score-list .badge {
-      &.blue { background-color: #4dd5bc; }
-      &.orange { background-color: #ff9f43; }
+      border-radius: 8px;
+    }
+  }
+
+  // 🟢 DEIN STYLING FÜR DEN CODE-VIBES BUTTON
+  .primary-button {
+    padding: 1.2rem 2.4rem;
+    font-size: 1.6rem;
+    background: #66cfbc;
+    color: #ffffff;
+    border-radius: 0px; // Code-Vibes ist ja eher eckig!
+
+    &:hover {
+      background: #66cfbcab;
     }
   }
 }
 
 // 2. FÜR DAS GAMING THEME
 .result-overlay.theme-gaming {
-  background-color: var(--result-bg-color); // Zieht die Gaming-Hintergrundfarbe
+  background-color: var(--result-bg-color);
 
-  .winner-name, .game-over-title, .draw-title {
-    text-shadow: var(--result-go-shadow); // Der Gaming-Schatten (z.B. Pink/Rot)
+  .game-over-title, .draw-title {
+    text-shadow: var(--result-go-shadow); 
   }
 
-  .winner-name.color-blue { color: #00d2ff; }   // Gaming-Farben falls abweichend
-  .winner-name.color-orange { color: #e71c4f; }
-
+  // 🟢 DEIN STYLING FÜR DIE GAMING SCORE-BOX
   .score-summary {
     background: #1f252e; 
-    
+    border-radius: 20px; // Vielleicht etwas runder fürs Gaming?
+    border: 2px solid #e71c4f; // Beispiel: Roter Gaming-Rahmen
+    margin-bottom: 1rem;
+
+    .final-score-label {
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+    }
+
     .score-list .badge {
-      &.blue { background-color: #00d2ff; }
-      &.orange { background-color: #e71c4f; }
+      border-radius: 12px;
+    }
+  }
+
+  // 🟢 DEIN STYLING FÜR DEN GAMING BUTTON
+  .primary-button {
+    padding: 1.5rem 3rem;
+    font-size: 1.8rem;
+    background: #e71c4f;
+    color: #ffffff;
+    border-radius: 10px; // Runder Button fürs Gaming
+
+    &:hover {
+      background: #ffffff;
+      color: #e71c4f;
     }
   }
 }

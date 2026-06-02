@@ -1,18 +1,5 @@
 import { Card, GameSettings } from "../types/types";
-import { ThemeIcons } from "../types/types";
-
-const themeIcons: ThemeIcons = {
-  "code-vibes": {
-    playerOne: "./assets/icons/ui/label_blue.svg",
-    playerTwo: "./assets/icons/ui/label_orange.svg",
-    exit: "./assets/icons/ui/exit_with.svg",
-  },
-  gaming: {
-    playerOne: "./assets/icons/ui/blue_player.svg",
-    playerTwo: "./assets/icons/ui/orange_player.svg",
-    exit: "./assets/icons/ui/exit_with.svg",
-  },
-};
+import { themeIcons } from "../main";
 
 export const getInGameScreenHTML = (
   allCards: Card[],

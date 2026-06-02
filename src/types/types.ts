@@ -17,6 +17,12 @@ export interface IconSet {
   playerOne: string;
   playerTwo: string;
   exit: string;
+  pawnBlue: string;
+  pawnOrange: string;
+  scale: string;
+  buttonText: string;
+  titleGameOver?: string;
+  titleDraw?: string;
 }
 
 export interface GameResultData {

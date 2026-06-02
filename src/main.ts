@@ -1,5 +1,5 @@
 import "./styles/style.scss";
-import type { GameSettings, GameState, Card } from "./types/types";
+import type { GameSettings, GameState, Card, ThemeIcons } from "./types/types";
 import type { GameResultData } from "./types/types";
 import { getStartScreenHTML } from "./screens/start-screen";
 import { getSettingsScreenHTML } from "./screens/settings-screen";
@@ -11,6 +11,7 @@ import { createDeck } from "./logic/game-logic";
 import { setupGameListeners } from "./logic/game-logic";
 import { initGame, getGameState, getGameResult } from "./logic/game-logic";
 
+
 let currentSettings: GameSettings = {
   theme: "code-vibes",
   playerColor: "blue",
@@ -21,6 +22,30 @@ let currentState: GameState = "start";
 let gameWinner: "blue" | "orange" | "draw" = "draw";
 let allCards: Card[] = [];
 
+export const themeIcons: ThemeIcons = {
+  "code-vibes": {
+    playerOne: "./assets/icons/ui/label_blue.svg",
+    playerTwo: "./assets/icons/ui/label_orange.svg",
+    exit: "./assets/icons/ui/exit_with.svg",
+    pawnBlue: "./assets/icons/ui/blue_player.svg",
+    pawnOrange: "./assets/icons/ui/orange_player.svg",
+    scale: "./assets/icons/ui/scal_icon.svg",
+    buttonText: "Back to start",
+    titleGameOver: "./assets/icons/ui/game_over_green.svg",
+    titleDraw: "./assets/icons/ui/draw_green.svg"
+  },
+  gaming: {
+    playerOne: "./assets/icons/ui/blue_player.svg",
+    playerTwo: "./assets/icons/ui/orange_player.svg",
+    exit: "./assets/icons/ui/exit_with.svg",
+    pawnBlue: "./assets/icons/ui/pockal-one.svg", 
+    pawnOrange: "./assets/icons/ui/pockal-one.svg",
+    scale: "./assets/icons/ui/scale_gaming.svg",
+    buttonText: "Home",
+    titleGameOver: "./assets/icons/ui/game_over_pink.svg"
+  },
+};
+
 function init() {
   render();
 }
@@ -28,6 +53,13 @@ function init() {
 function render() {
   const appRef = document.getElementById("app");
   if (!appRef) return;
+
+  currentState = "result";
+
+  (window as any).gameWinner = "blue";
+
+  renderResultScreen(appRef);
+  return;
 
   if (currentState === "start") {
     renderStartScreen(appRef);
@@ -138,14 +170,19 @@ function renderResultScreen(appRef: HTMLElement) {
     showResult(appRef, {
       type: "win",
       winnerColor: gameWinner,
-      winnerName: gameWinner === "blue" ? "Player Blue" : "Player Orange",
+      winnerName: gameWinner === "blue" ? "Blue Player" : "Orange Player",
       scores
     }, currentThemeClass);
   }, 3000);
 }
 
 function showResult(appRef: HTMLElement, data: GameResultData, currentThemeClass: string) {
-  appRef.innerHTML = getGameResultHTML(data, currentThemeClass);
+  // 1. Wir holen das exakte Icon-Set für das aktuelle Theme (z.B. 'code-vibes')
+  const themeName = currentSettings.theme; // 'code-vibes' oder 'gaming'
+  const icons = themeIcons[themeName]; // 👈 Hier haben wir die echten Pfade!
+
+  // 2. Wir übergeben die echten Icons als DRITTEN Baustein an dein HTML-Template
+  appRef.innerHTML = getGameResultHTML(data, currentThemeClass, icons);
   
   if (data.type !== "game-over") {
     document.getElementById("back-to-start-btn")?.addEventListener("click", () => {
