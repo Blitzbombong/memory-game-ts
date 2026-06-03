@@ -1,5 +1,5 @@
-@use '../abstracts/mixins' as m;
-@use '../abstracts/variables' as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
 
 .result-overlay {
   position: fixed;
@@ -22,32 +22,39 @@
     flex-direction: column;
     align-items: center;
     justify-content: center; // 🟢 Ändert alles auf perfekt mittig!
-    gap: 3rem;               // 🟢 Automatischer Abstand zwischen den Elementen
+    gap: 2rem; // 🟢 Automatischer Abstand zwischen den Elementen
     text-align: center;
 
     .result-header {
-      .winner-label, .draw-label {
+      .winner-label,
+      .draw-label {
         font-size: 1.8rem;
         text-transform: uppercase;
         letter-spacing: 2px;
         color: #ffffff;
       }
 
-      .winner-name, .game-over-title, .draw-title {
+      .winner-name,
+      .game-over-title,
+      .draw-title {
         font-size: 5.6rem;
         font-weight: 800;
         margin-top: 1rem;
       }
 
-      .winner-name.color-blue { color: var(--color-player-one); }
-      .winner-name.color-orange { color: var(--color-player-two); }
+      .winner-name.color-blue {
+        color: var(--color-player-one);
+      }
+      .winner-name.color-orange {
+        color: var(--color-player-two);
+      }
     }
 
-    .winner-illustration, .draw-illustration {
+    .winner-illustration {
       display: flex;
       justify-content: center;
       align-items: center;
-      
+
       img {
         height: 25vh;
         max-height: 250px;
@@ -77,8 +84,12 @@
           padding: 0.8rem 2rem;
           color: #ffffff;
 
-          &.blue { background-color: var(--color-player-one); }
-          &.orange { background-color: var(--color-player-two); }
+          &.blue {
+            background-color: var(--color-player-one);
+          }
+          &.orange {
+            background-color: var(--color-player-two);
+          }
         }
       }
     }
@@ -101,18 +112,34 @@
   background-color: var(--result-bg-color);
 
   &.has-confetti {
-    background-image: url('../assets/icons/ui/win_confetti.svg');
+    background-image: url("../assets/icons/ui/win_confetti.svg");
     background-repeat: no-repeat;
     background-position: top center;
     background-size: contain;
   }
 
-  .draw-label {
-    font-family: var(v.$font-accent);
-    font-size: 4rem;
-    font-weight: 400;
-    color: #ffffff;
-    margin-bottom: 1rem;
+  .draw-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .draw-label {
+      font-family: var(v.$font-accent);
+      font-size: 4rem;
+      font-weight: 400;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .draw-title {
+      width: 40rem;
+      height: 14rem;
+    }
+
+      .draw-illustration img {
+        width: 100%;
+        height: auto;
+      }
   }
 
   .winner-name {
@@ -131,7 +158,7 @@
       color: #a0a0a0;
       margin-bottom: 1rem;
     }
-    
+
     .score-list .badge {
       border-radius: 8px;
     }
@@ -140,28 +167,60 @@
   // 🟢 DEIN STYLING FÜR DEN CODE-VIBES BUTTON
   .primary-button {
     padding: 1.2rem 2.4rem;
-    font-size: 1.6rem;
-    background: #66cfbc;
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-family: var(v.$font-accent);
+    background: #86e9d64d;
     color: #ffffff;
-    border-radius: 0px; // Code-Vibes ist ja eher eckig!
+    border: 1px solid #4dd5bc;
 
     &:hover {
       background: #66cfbcab;
+      box-shadow:
+            inset 0 0 0 1px #4dd5bc,
+            0 8px 20px rgba(77, 213, 188, 0.25);
     }
   }
 }
 
 // 2. FÜR DAS GAMING THEME
 .result-overlay.theme-gaming {
-  background-color: var(--result-bg-color);
+  background-color: var(--bg-color);
 
-  .game-over-title, .draw-title {
-    text-shadow: var(--result-go-shadow); 
+  .game-over-title {
+    text-shadow: var(--result-go-shadow);
+  }
+
+  .draw-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .draw-label {
+      font-family:v.$font-code !important;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      box-shadow: var(--header-drop-shadow);
+    }
+
+    .draw-title {
+      font-family: v.$font-code !important;
+      font-size: 12.8rem;
+      font-weight: 700;
+      color: #ed1b76;
+      text-shadow: 0 0 10px #00000033;
+    }
+
+      .draw-illustration img {
+        width: 34rem;
+        height: auto;
+      }
   }
 
   // 🟢 DEIN STYLING FÜR DIE GAMING SCORE-BOX
   .score-summary {
-    background: #1f252e; 
+    background: #1f252e;
     border-radius: 20px; // Vielleicht etwas runder fürs Gaming?
     border: 2px solid #e71c4f; // Beispiel: Roter Gaming-Rahmen
     margin-bottom: 1rem;
@@ -178,15 +237,19 @@
 
   // 🟢 DEIN STYLING FÜR DEN GAMING BUTTON
   .primary-button {
-    padding: 1.5rem 3rem;
-    font-size: 1.8rem;
-    background: #e71c4f;
+    padding: 1rem 2.5rem;
+    font-size: 2rem;
+    background: #e71c4f24;
+    border: 1px solid #e71c4f;
     color: #ffffff;
-    border-radius: 10px; // Runder Button fürs Gaming
+    border-radius: 10px; 
+    font-family: v.$font-code !important;
+    font-weight: 700;
 
     &:hover {
-      background: #ffffff;
-      color: #e71c4f;
+      box-shadow:
+            inset 0 0 0 2px #e71c4f,
+            0 5px 15px #e71c4f66;
     }
   }
 }

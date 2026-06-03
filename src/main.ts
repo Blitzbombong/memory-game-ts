@@ -55,6 +55,7 @@ function render() {
   if (!appRef) return;
 
   currentState = "result";
+  currentSettings.theme = "gaming";
 
   (window as any).gameWinner = "blue";
 
