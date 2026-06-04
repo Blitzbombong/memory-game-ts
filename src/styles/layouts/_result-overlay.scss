@@ -124,7 +124,7 @@
     align-items: center;
 
     .draw-label {
-      font-family: var(v.$font-accent);
+      font-family: v.$font-accent !important;
       font-size: 4rem;
       font-weight: 400;
       color: #ffffff;
@@ -150,14 +150,14 @@
     margin-top: 7rem;
 
     .winner-label {
-      font-family: var(v.$font-accent);
+      font-family: v.$font-accent !important;
       font-size: 4rem;
       font-weight: 400;
       color: #ffffff;
     }
 
     .winner-name {
-      font-family: var(v.$font-accent);
+      font-family: v.$font-accent !important;
       font-size: 6rem;
       font-weight: 700;
 
@@ -233,7 +233,7 @@
     padding: 1.2rem 2.4rem;
     font-size: 2.4rem;
     font-weight: 700;
-    font-family: var(v.$font-accent);
+    font-family: v.$font-accent !important;
     background: #86e9d64d;
     color: #ffffff;
     border: 1px solid #4dd5bc;
