@@ -114,7 +114,7 @@
   &.has-confetti {
     background-image: url("../assets/icons/ui/win_confetti.svg");
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: center -6rem;
     background-size: contain;
   }
 
@@ -136,32 +136,96 @@
       height: 14rem;
     }
 
-      .draw-illustration img {
-        width: 100%;
-        height: auto;
-      }
+    .draw-illustration img {
+      width: 100%;
+      height: auto;
+    }
   }
 
-  .winner-name {
-    font-family: var(v.$font-accent);
-    font-size: 6rem;
-    font-weight: 700;
+  .winner-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 7rem;
+
+    .winner-label {
+      font-family: var(v.$font-accent);
+      font-size: 4rem;
+      font-weight: 400;
+      color: #ffffff;
+    }
+
+    .winner-name {
+      font-family: var(v.$font-accent);
+      font-size: 6rem;
+      font-weight: 700;
+
+      &.color-blue {
+        color: var(--color-player-one); // Schaltet auf dein Theme-Blau
+      }
+
+      &.color-orange {
+        color: var(--color-player-two); // Schaltet auf dein Theme-Orange
+      }
+    }
   }
 
   // 🟢 DEIN STYLING FÜR DIE CODE-VIBES SCORE-BOX
+
   .score-summary {
-    background: #2b2c2c;
-    border-radius: 16px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     .final-score-label {
-      color: #a0a0a0;
-      margin-bottom: 1rem;
+      font-family: v.$font-accent !important;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: #ffffff;
+      margin-top: 4rem;
+      margin-bottom: 1.5rem;
     }
 
-    .score-list .badge {
-      border-radius: 8px;
+    .score-board {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: var(--header-btn-color);
+      padding: 0.8rem 2rem;
+
+      .score-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &.blue-player .score-value {
+          color: var(--color-player-one);
+        }
+
+        &.orange-player .score-value {
+          color: var(--color-player-two);
+        }
+      }
+
+      .player-icon {
+        width: 2.4rem;
+        height: 2rem;
+      }
+
+      .score-value {
+        font-weight: 700;
+        font-family: v.$font-accent !important;
+        font-size: 2.4rem;
+      }
     }
+  }
+
+  .final-score-label {
+    color: #a0a0a0;
+    margin-bottom: 1rem;
+  }
+
+  .score-list .badge {
+    border-radius: 8px;
   }
 
   // 🟢 DEIN STYLING FÜR DEN CODE-VIBES BUTTON
@@ -177,8 +241,8 @@
     &:hover {
       background: #66cfbcab;
       box-shadow:
-            inset 0 0 0 1px #4dd5bc,
-            0 8px 20px rgba(77, 213, 188, 0.25);
+        inset 0 0 0 1px #4dd5bc,
+        0 8px 20px rgba(77, 213, 188, 0.25);
     }
   }
 }
@@ -189,6 +253,8 @@
 
   .game-over-title {
     text-shadow: var(--result-go-shadow);
+    font-family: v.$font-code !important;
+    font-size: 12.4rem;
   }
 
   .draw-container {
@@ -197,7 +263,7 @@
     align-items: center;
 
     .draw-label {
-      font-family:v.$font-code !important;
+      font-family: v.$font-code !important;
       font-size: 2.8rem;
       font-weight: 700;
       color: #ffffff;
@@ -212,18 +278,98 @@
       text-shadow: 0 0 10px #00000033;
     }
 
-      .draw-illustration img {
-        width: 34rem;
-        height: auto;
+    .draw-illustration img {
+      width: 34rem;
+      height: auto;
+    }
+  }
+
+  .winner-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+
+    .winner-label {
+      font-family: v.$font-code;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.2rem;
+    }
+
+    .winner-name {
+      font-family: v.$font-code;
+      font-size: 6.4rem;
+      font-weight: 700;
+      letter-spacing: 0.45rem;
+
+      &.color-blue {
+        color: var(--color-player-one); // Schaltet auf dein Theme-Blau
       }
+
+      &.color-orange {
+        color: var(--color-player-two); // Schaltet auf dein Theme-Orange
+      }
+    }
+
+    .winner-pawn {
+      width: 28.8rem;
+      height: 34.4rem;
+    }
   }
 
   // 🟢 DEIN STYLING FÜR DIE GAMING SCORE-BOX
   .score-summary {
-    background: #1f252e;
-    border-radius: 20px; // Vielleicht etwas runder fürs Gaming?
-    border: 2px solid #e71c4f; // Beispiel: Roter Gaming-Rahmen
     margin-bottom: 1rem;
+
+    .final-score-label {
+      font-family: v.$font-code !important;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2rem;
+      color: #ffffff;
+      margin-top: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .score-board {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: var(--header-play-item);
+      border-radius: var(--player-border-radius);
+      padding: 0.8rem 2rem;
+
+      .score-item {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+
+        &.blue-player .score-value {
+          color: var(--color-player-one);
+        }
+
+        &.orange-player .score-value {
+          color: var(--color-player-two);
+        }
+      }
+
+      .player-icon {
+        width: 2.6rem;
+        height: 3.2rem;
+      }
+
+      .score-value {
+        font-weight: 700;
+        font-family: v.$font-code !important;
+        font-size: 4rem;
+      }
+
+      .player-name {
+        display: none;
+      }
+    }
 
     .final-score-label {
       color: #ffffff;
@@ -242,14 +388,14 @@
     background: #e71c4f24;
     border: 1px solid #e71c4f;
     color: #ffffff;
-    border-radius: 10px; 
+    border-radius: 10px;
     font-family: v.$font-code !important;
     font-weight: 700;
 
     &:hover {
       box-shadow:
-            inset 0 0 0 2px #e71c4f,
-            0 5px 15px #e71c4f66;
+        inset 0 0 0 2px #e71c4f,
+        0 5px 15px #e71c4f66;
     }
   }
 }

@@ -53,15 +53,6 @@ function init() {
 function render() {
   const appRef = document.getElementById("app");
   if (!appRef) return;
-
-  currentState = "result";
-  currentSettings.theme = "gaming";
-
-  (window as any).gameWinner = "blue";
-
-  renderResultScreen(appRef);
-  return;
-
   if (currentState === "start") {
     renderStartScreen(appRef);
   } else if (currentState === "settings") {

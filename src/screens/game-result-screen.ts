@@ -13,11 +13,6 @@ export const getGameResultHTML = (data: GameResultData, currentThemeClass: strin
     <article class="result-content-container">
         
         <header class="result-header">
-            ${isWin ? `
-                <p class="winner-label">The winner is</p>
-                <h2 class="winner-name color-${data.winnerColor}">${data.winnerName?.toUpperCase()}</h2>
-            ` : ''}
-
             ${isGameOver ? `
                 <img src="${icons.titleGameOver}" class="result-title-img game-over-title" alt="Game Over">
             ` : ''}
@@ -25,9 +20,14 @@ export const getGameResultHTML = (data: GameResultData, currentThemeClass: strin
         </header>
 
         ${isWin ? `
-            <figure class="winner-illustration">
-                <img src="${winnerPawnSrc}" class="winner-pawn" alt="Winner Icon">
-            </figure>
+            <div class="winner-box">
+                <p class="winner-label">The winner is</p>
+                <h2 class="winner-name color-${data.winnerColor}">${data.winnerName?.toUpperCase()}</h2>
+                
+                <figure class="winner-illustration">
+                    <img src="${winnerPawnSrc}" class="winner-pawn" alt="Winner Icon">
+                </figure>
+            </div>
         ` : ''}
         
         ${isDraw ? `
@@ -49,10 +49,24 @@ export const getGameResultHTML = (data: GameResultData, currentThemeClass: strin
         ${isGameOver ? `
             <section class="score-summary">
                 <p class="final-score-label">Final score</p>
-                <ul class="score-list">
-                    <li class="badge blue">Blue ${data.scores.blue}</li>
-                    <li class="badge orange">Orange ${data.scores.orange}</li>
-                </ul>
+                
+                <div class="score-board">
+                    
+                    <div class="score-item blue-player">
+                        <img src="${icons.playerOne}" alt="Blue Icon" class="player-icon">
+                        <span class="score-value">
+                            <span class="player-name">Blue</span> ${data.scores.blue}
+                        </span>
+                    </div>
+                    
+                    <div class="score-item orange-player">
+                        <img src="${icons.playerTwo}" alt="Orange Icon" class="player-icon">
+                        <span class="score-value">
+                            <span class="player-name">Orange</span> ${data.scores.orange}
+                        </span>
+                    </div>
+                    
+                </div>
             </section>
         ` : ''}
 
