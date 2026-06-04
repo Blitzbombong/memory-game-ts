@@ -1,6 +1,13 @@
 import { Card, GameSettings } from "../types/types";
 import { themeIcons } from "../main";
 
+/**
+ * @param {Card[]} allCards
+ * @param {GameSettings["theme"]} currentTheme
+ * @param {{ blue: number; orange: number }} scores
+ * @param {"blue" | "orange"} activePlayer
+ * @returns {string}
+ */
 export const getInGameScreenHTML = (
   allCards: Card[],
   currentTheme: GameSettings["theme"],

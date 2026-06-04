@@ -9,10 +9,11 @@ const dialogTexts: Record<string, { cancel: string; confirm: string }> = {
   },
 };
 
+/** @param {string} currentTheme */
 export const getExitDialogHTML = (currentTheme: string): string => {
   const texts = dialogTexts[currentTheme] || dialogTexts["code-vibes"];
 
-  return `
+  return /*html*/ `
     <div class="modal-backdrop" id="exit-modal">
       <div class="modal-content">
         <h2 class="modal-title">Are you sure you want to quit the game?</h2>

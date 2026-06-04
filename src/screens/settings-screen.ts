@@ -1,3 +1,8 @@
+/**
+ * Generates the HTML structure for the settings screen of the game.
+ * This screen allows users to customize their gaming experience by selecting themes, players, and board sizes.
+ * @returns {string} The HTML markup for the settings screen.
+ */
 export const getSettingsScreenHTML = (): string => {
   return /*html*/ `
     <section class="settings-screen">

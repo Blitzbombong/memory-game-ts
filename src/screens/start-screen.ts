@@ -1,5 +1,9 @@
+/**
+ * Generates the HTML for the start screen of the game.
+ * @returns {string} The HTML string for the start screen.
+ */
 export const getStartScreenHTML = (): string => {
-  return `
+  return /*html*/ `
     <section class="start-screen">
       <header class="start-header">
         <p class="welcome-message">It's play time!</p>

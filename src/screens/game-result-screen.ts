@@ -1,11 +1,15 @@
 import { GameResultData } from "../types/types";
 
+/**
+ * @param {GameResultData} data
+ * @param {string} currentThemeClass
+ * @param {ThemeIcons} icons
+ * @returns {string}
+ */
 export const getGameResultHTML = (data: GameResultData, currentThemeClass: string, icons: any): string => {
   const isWin = data.type === 'win';
   const isGameOver = data.type === 'game-over';
   const isDraw = data.type === 'draw';
-
-  // Holt dynamisch das richtige Icon passend zum aktiven Style (Code-Vibes oder Gaming)!
   const winnerPawnSrc = data.winnerColor === 'blue' ? icons.pawnBlue : icons.pawnOrange;
 
   return /*html*/ `

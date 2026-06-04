@@ -11,7 +11,6 @@ import { createDeck } from "./logic/game-logic";
 import { setupGameListeners } from "./logic/game-logic";
 import { initGame, getGameState, getGameResult } from "./logic/game-logic";
 
-
 let currentSettings: GameSettings = {
   theme: "code-vibes",
   playerColor: "blue",
@@ -32,51 +31,77 @@ export const themeIcons: ThemeIcons = {
     scale: "./assets/icons/ui/scal_icon.svg",
     buttonText: "Back to start",
     titleGameOver: "./assets/icons/ui/game_over_green.svg",
-    titleDraw: "./assets/icons/ui/draw_green.svg"
+    titleDraw: "./assets/icons/ui/draw_green.svg",
   },
   gaming: {
     playerOne: "./assets/icons/ui/blue_player.svg",
     playerTwo: "./assets/icons/ui/orange_player.svg",
     exit: "./assets/icons/ui/exit_with.svg",
-    pawnBlue: "./assets/icons/ui/pockal-one.svg", 
+    pawnBlue: "./assets/icons/ui/pockal-one.svg",
     pawnOrange: "./assets/icons/ui/pockal-one.svg",
     scale: "./assets/icons/ui/scale_gaming.svg",
     buttonText: "Home",
-    titleGameOver: "./assets/icons/ui/game_over_pink.svg"
+    titleGameOver: "./assets/icons/ui/game_over_pink.svg",
   },
 };
 
+/**
+ * Initializes the game by rendering the start screen.
+ */
 function init() {
   render();
 }
 
+/**
+ * Renders the current game state based on the `currentState` variable.
+ */
 function render() {
   const appRef = document.getElementById("app");
   if (!appRef) return;
-  if (currentState === "start") {
-    renderStartScreen(appRef);
-  } else if (currentState === "settings") {
-    renderSettingsScreen(appRef);
-  } else if (currentState === "in-game") {
-    renderInGameScreen(appRef);
-    const inGameScreenRef = document.querySelector(".in-game-screen");
 
-    if (inGameScreenRef) {
-      inGameScreenRef.insertAdjacentHTML("beforeend", getExitDialogHTML(currentSettings.theme));
-    } else {
-      appRef.insertAdjacentHTML("beforeend", getExitDialogHTML(currentSettings.theme));
-    }
-    setupExitDialogLogic();
-  } else if (currentState === "result") {
-    renderResultScreen(appRef);
+  switch (currentState) {
+    case "start":
+      renderStartScreen(appRef);
+      break;
+    case "settings":
+      renderSettingsScreen(appRef);
+      break;
+    case "in-game":
+      handleInGameRender(appRef);
+      break;
+    case "result":
+      renderResultScreen(appRef);
+      break;
   }
 }
 
+/**
+ * Handles the rendering logic for the in-game screen, including setting up the exit dialog.
+ * @param appRef - The reference to the main app container where the in-game screen will be rendered.
+ */
+function handleInGameRender(appRef: HTMLElement): void {
+  renderInGameScreen(appRef);
+
+  const targetRef = document.querySelector(".in-game-screen") || appRef;
+  targetRef.insertAdjacentHTML(
+    "beforeend",
+    getExitDialogHTML(currentSettings.theme),
+  );
+
+  setupExitDialogLogic();
+}
+
+/** Renders the start screen and sets up its event listeners.
+ * @param appRef - The reference to the main app container where the start screen will be rendered.
+ */
 function renderStartScreen(appRef: HTMLElement) {
   appRef.innerHTML = getStartScreenHTML();
   setupStartScreenListeners();
 }
 
+/** Renders the settings screen and sets up its event listeners.
+ * @param appRef - The reference to the main app container where the settings screen will be rendered.
+ */
 function renderSettingsScreen(appRef: HTMLElement) {
   appRef.innerHTML = getSettingsScreenHTML();
   setupSettingsScreenListeners((newSettings) => {
@@ -88,37 +113,49 @@ function renderSettingsScreen(appRef: HTMLElement) {
   });
 }
 
+/** Checks if the game has ended and updates the state accordingly.
+ * @return {boolean} - Returns true if the game has ended, false otherwise.
+ */
+function checkGameEnd(): boolean {
+  const result = getGameResult(allCards.length);
+
+  if (result.isGameOver && result.winner) {
+    gameWinner = result.winner;
+    currentState = "result";
+    render();
+    return true;
+  }
+  return false;
+}
+
+/** Opens the exit dialog. */
+function openExitModal(): void {
+  const exitModal = document.getElementById("exit-modal");
+  if (exitModal) exitModal.classList.add("is-open");
+}
+
+/** Renders the in-game screen, sets up the game listeners, and checks for game end conditions.
+ * @param appRef - The reference to the main app container where the in-game screen will be rendered.
+ */
 function renderInGameScreen(appRef: HTMLElement) {
   const gameState = getGameState();
+
   appRef.innerHTML = getInGameScreenHTML(
     allCards,
     currentSettings.theme,
     gameState.scores,
     gameState.activePlayer,
   );
+
   document
     .querySelector(".game-layout-wrapper")
     ?.classList.add(`theme-${currentSettings.theme}`);
-  const result = getGameResult(allCards.length);
-  if (result.isGameOver && result.winner) {
-    gameWinner = result.winner; // Gewinner für gleich merken
-    currentState = "result"; // Zustand wechseln
-    render(); // Zentrales Render aufrufen
-    return;
-  }
 
-  setupGameListeners(
-    allCards,
-    () => render(),
-    () => {
-      const exitModal = document.getElementById("exit-modal");
-      if (exitModal) {
-        exitModal.classList.add("is-open");
-      }
-    },
-  );
+  if (checkGameEnd()) return;
+  setupGameListeners(allCards, () => render(), openExitModal);
 }
 
+/** Sets up the event listeners for the exit dialog. */
 function setupExitDialogLogic() {
   const exitGameBtn = document.getElementById("exit-game-btn");
   const exitModal = document.getElementById("exit-modal");
@@ -142,48 +179,61 @@ function setupExitDialogLogic() {
   });
 }
 
+/** Returns the data for the win screen.
+ * @param scores - The current scores of the game.
+ * @return {GameResultData} - The data object containing the win information.
+ */
+function getWinData(scores: any): GameResultData {
+  return {
+    type: "win",
+    winnerColor: gameWinner,
+    winnerName: gameWinner === "blue" ? "Blue Player" : "Orange Player",
+    scores,
+  };
+}
+
+/** Renders the result screen for the game.
+ * @param appRef - The reference to the main app container where the result screen will be rendered.
+ */
 function renderResultScreen(appRef: HTMLElement) {
-  const scores = getGameState().scores; // Holt nur noch die Scores aus dem State
-  
-  // 🟢 Wir nutzen direkt deine globale Variable für das Theme!
-  // Wenn deine Variable z.B. "code-vibes" speichert, wird daraus "theme-code-vibes"
-  const currentThemeClass = `theme-${currentSettings.theme}`; 
+  const scores = getGameState().scores;
+  const currentThemeClass = `theme-${currentSettings.theme}`;
 
   if (gameWinner === "draw") {
-    showResult(appRef, { type: "draw", scores }, currentThemeClass);
-    return;
+    return showResult(appRef, { type: "draw", scores }, currentThemeClass);
   }
 
-  // 1. Screen: Game over
   showResult(appRef, { type: "game-over", scores }, currentThemeClass);
-  
-  // 2. Screen: Winner nach 3 Sekunden
   setTimeout(() => {
-    showResult(appRef, {
-      type: "win",
-      winnerColor: gameWinner,
-      winnerName: gameWinner === "blue" ? "Blue Player" : "Orange Player",
-      scores
-    }, currentThemeClass);
+    showResult(appRef, getWinData(scores), currentThemeClass);
   }, 3000);
 }
 
-function showResult(appRef: HTMLElement, data: GameResultData, currentThemeClass: string) {
-  // 1. Wir holen das exakte Icon-Set für das aktuelle Theme (z.B. 'code-vibes')
-  const themeName = currentSettings.theme; // 'code-vibes' oder 'gaming'
-  const icons = themeIcons[themeName]; // 👈 Hier haben wir die echten Pfade!
-
-  // 2. Wir übergeben die echten Icons als DRITTEN Baustein an dein HTML-Template
+/** Shows the result screen for the game.
+ * @param appRef - The reference to the main app container where the result screen will be rendered.
+ * @param data - The data object containing the result information.
+ * @param currentThemeClass - The class name for the current theme.
+ */
+function showResult(
+  appRef: HTMLElement,
+  data: GameResultData,
+  currentThemeClass: string,
+) {
+  const themeName = currentSettings.theme;
+  const icons = themeIcons[themeName];
   appRef.innerHTML = getGameResultHTML(data, currentThemeClass, icons);
-  
+
   if (data.type !== "game-over") {
-    document.getElementById("back-to-start-btn")?.addEventListener("click", () => {
-      currentState = "start";
-      render();
-    });
+    document
+      .getElementById("back-to-start-btn")
+      ?.addEventListener("click", () => {
+        currentState = "start";
+        render();
+      });
   }
 }
 
+/** Sets up the event listeners for the start screen. */
 function setupStartScreenListeners() {
   const startButton = document.querySelector(
     ".play-button",

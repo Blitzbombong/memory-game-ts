@@ -30,7 +30,7 @@
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    -webkit-backface-visibility: hidden; // Für Safari / ältere Browser
+    -webkit-backface-visibility: hidden; 
     backface-visibility: hidden;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
