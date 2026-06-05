@@ -39,7 +39,7 @@
 
   &:has(.btn-start:not([disabled])) {
     .status-divider {
-      background-image: url("../assets/icons/ui/line_full.svg");
+      background-image: url("/assets/icons/ui/line_full.svg");
       transform: scale(1.1);
     }
   }
