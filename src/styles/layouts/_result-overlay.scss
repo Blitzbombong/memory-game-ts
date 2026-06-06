@@ -21,8 +21,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; // 🟢 Ändert alles auf perfekt mittig!
-    gap: 2rem; // 🟢 Automatischer Abstand zwischen den Elementen
+    justify-content: center;
+    gap: 2rem;
     text-align: center;
 
     .result-header {
@@ -62,7 +62,6 @@
       }
     }
 
-    // 🟢 BASIS-LAYOUT FÜR DIE SCORE-BOX
     .score-summary {
       padding: 2rem 4rem;
 
@@ -93,21 +92,9 @@
         }
       }
     }
-
-    // 🟢 BASIS-LAYOUT FÜR DEN BUTTON
-    .primary-button {
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      border: none; // Entfernt Standard-Rahmen
-    }
   }
 }
 
-// =========================================================================
-// HIER STYLES DU DIE THEMES INDIVIDUELL! 🎉
-// =========================================================================
-
-// 1. FÜR DAS CODE-VIBES THEME
 .result-overlay.theme-code-vibes {
   background-color: var(--result-bg-color);
 
@@ -162,16 +149,14 @@
       font-weight: 700;
 
       &.color-blue {
-        color: var(--color-player-one); // Schaltet auf dein Theme-Blau
+        color: var(--color-player-one);
       }
 
       &.color-orange {
-        color: var(--color-player-two); // Schaltet auf dein Theme-Orange
+        color: var(--color-player-two);
       }
     }
   }
-
-  // 🟢 DEIN STYLING FÜR DIE CODE-VIBES SCORE-BOX
 
   .score-summary {
     margin-bottom: 1rem;
@@ -227,27 +212,8 @@
   .score-list .badge {
     border-radius: 8px;
   }
-
-  // 🟢 DEIN STYLING FÜR DEN CODE-VIBES BUTTON
-  .primary-button {
-    padding: 1.2rem 2.4rem;
-    font-size: 2.4rem;
-    font-weight: 700;
-    font-family: v.$font-accent !important;
-    background: #86e9d64d;
-    color: #ffffff;
-    border: 1px solid #4dd5bc;
-
-    &:hover {
-      background: #66cfbcab;
-      box-shadow:
-        inset 0 0 0 1px #4dd5bc,
-        0 8px 20px rgba(77, 213, 188, 0.25);
-    }
-  }
 }
 
-// 2. FÜR DAS GAMING THEME
 .result-overlay.theme-gaming {
   background-color: var(--bg-color);
 
@@ -305,11 +271,11 @@
       letter-spacing: 0.45rem;
 
       &.color-blue {
-        color: var(--color-player-one); // Schaltet auf dein Theme-Blau
+        color: var(--color-player-one);
       }
 
       &.color-orange {
-        color: var(--color-player-two); // Schaltet auf dein Theme-Orange
+        color: var(--color-player-two);
       }
     }
 
@@ -319,7 +285,6 @@
     }
   }
 
-  // 🟢 DEIN STYLING FÜR DIE GAMING SCORE-BOX
   .score-summary {
     margin-bottom: 1rem;
 
@@ -378,24 +343,6 @@
 
     .score-list .badge {
       border-radius: 12px;
-    }
-  }
-
-  // 🟢 DEIN STYLING FÜR DEN GAMING BUTTON
-  .primary-button {
-    padding: 1rem 2.5rem;
-    font-size: 2rem;
-    background: #e71c4f24;
-    border: 1px solid #e71c4f;
-    color: #ffffff;
-    border-radius: 10px;
-    font-family: v.$font-code !important;
-    font-weight: 700;
-
-    &:hover {
-      box-shadow:
-        inset 0 0 0 2px #e71c4f,
-        0 5px 15px #e71c4f66;
     }
   }
 }

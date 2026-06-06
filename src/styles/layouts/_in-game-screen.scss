@@ -106,44 +106,6 @@
 
     .game-actions {
       justify-self: end;
-
-      .exit-button {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        font-family: var(--font-family), sans-serif;
-        background: var(--header-btn-color);
-        border: var(--header-btn-border);
-        color: var(--text-color);
-        border-radius: var(--header-btn-border-radius);
-        padding: 0.8rem 1.6rem;
-        font-size: var(--exit-font-size);
-        font-weight: var(--exit-font-weight);
-        cursor: pointer;
-        box-shadow: var(--header-btn-shadow);
-
-        .exit-icon {
-          width: var(--exit-font-icon-weight);
-          height: var(--exit-font-icon-height);
-          object-fit: contain;
-          transition: filter 0.05s ease-in-out;
-
-          .theme-gaming & {
-            filter: brightness(0) invert(1);
-          }
-        }
-
-        &:hover {
-          background: var(--back-to-game);
-          outline: var(--header-btn-hover);
-          box-shadow: 0 4px 15px var(--header-btn-shadow);
-          outline-offset: -2px;
-
-          .exit-icon {
-            filter: var(--exit-icon-hover-filter) !important;
-          }
-        }
-      }
     }
   }
 

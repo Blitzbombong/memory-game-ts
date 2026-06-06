@@ -1,4 +1,68 @@
 @use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.play-button {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  background-color: #f4e869;
+  padding: 1.2rem 2.2em;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+
+  .icon-left {
+    display: flex;
+    cursor: pointer;
+    img {
+      height: 3.2rem;
+      width: 4.4rem;
+      object-fit: contain;
+    }
+  }
+
+  .button-text {
+    font-size: 4rem;
+    color: v.$color-bg;
+  }
+
+  .arrow-wrapper {
+    position: relative;
+    width: 4.4rem;
+    height: 2.4rem;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: opacity 0.3s ease;
+      top: 0;
+      left: 0;
+    }
+
+    .arrow-hover {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    .icon-left img {
+      transform: rotate(-18deg);
+    }
+
+    .arrow-wrapper {
+      .arrow-normal {
+        opacity: 0;
+      }
+      .arrow-hover {
+        opacity: 1;
+      }
+    }
+  }
+}
 
 .btn-start {
   display: flex;
@@ -28,6 +92,163 @@
 
     &:hover {
       transform: scale(1.05);
+    }
+  }
+}
+
+.exit-button {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-family), sans-serif;
+  background: var(--header-btn-color);
+  border: var(--header-btn-border);
+  color: var(--text-color);
+  border-radius: var(--header-btn-border-radius);
+  padding: 0.8rem 1.6rem;
+  font-size: var(--exit-font-size);
+  font-weight: var(--exit-font-weight);
+  cursor: pointer;
+  box-shadow: var(--header-btn-shadow);
+
+  .exit-icon {
+    width: var(--exit-font-icon-weight);
+    height: var(--exit-font-icon-height);
+    object-fit: contain;
+    transition: filter 0.05s ease-in-out;
+
+    .theme-gaming & {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:hover {
+    background: var(--back-to-game);
+    outline: var(--header-btn-hover);
+    box-shadow: 0 4px 15px var(--header-btn-shadow);
+    outline-offset: -2px;
+
+    .exit-icon {
+      filter: var(--exit-icon-hover-filter) !important;
+    }
+  }
+}
+
+.modal-btn {
+  padding: 1.2rem 2.4rem;
+  font-size: var(--exit-font-size);
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.theme-code-vibes {
+  .modal-actions {
+    .modal-btn {
+      border-radius: 0;
+
+      &.btn-primary {
+        background: #66cfbc;
+        color: #ffffff;
+        border: 2px solid #66cfbc;
+        &:hover {
+          background: #66cfbcab;
+          box-shadow: inset 0 0 0 2px #4dd5bc;
+        }
+      }
+
+      &.btn-secondary {
+        background: #e2f5f1;
+        color: #4dd5bc;
+        border: 1px solid #4dd5bc;
+        &:hover {
+          background: #e2f5f1;
+          box-shadow:
+            inset 0 0 0 1px #4dd5bc,
+            0 8px 20px rgba(77, 213, 188, 0.25);
+        }
+      }
+    }
+  }
+}
+
+.theme-gaming {
+  .modal-actions {
+    .modal-btn {
+      border-radius: 1rem;
+      font-size: 1.6rem;
+
+      &.btn-primary {
+        background: #e71c4f;
+        color: #ffffff;
+        border: 1px solid #e71c4f;
+        &:hover {
+          background: #f0f6f9;
+          color: #e71c4f;
+          box-shadow: inset 0 0 0 2px #e71c4f;
+        }
+      }
+
+      &.btn-secondary {
+        background: rgba(231, 28, 79, 0.08);
+        color: #e71c4f;
+        border: 1px solid #e71c4f;
+        &:hover {
+          background: rgba(231, 28, 79, 0.2);
+          box-shadow:
+            inset 0 0 0 2px #e71c4f,
+            0 5px 15px #294f6066;
+        }
+      }
+    }
+  }
+}
+
+.primary-button {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+.theme-code-vibes {
+  .primary-button {
+    padding: 1.2rem 2.4rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-family: v.$font-accent !important;
+    background: #86e9d64d;
+    color: #ffffff;
+    border: 1px solid #4dd5bc;
+
+    &:hover {
+      background: #66cfbcab;
+      box-shadow:
+        inset 0 0 0 1px #4dd5bc,
+        0 8px 20px rgba(77, 213, 188, 0.25);
+    }
+  }
+}
+
+.theme-gaming {
+  .primary-button {
+    padding: 1rem 2.5rem;
+    font-size: 2rem;
+    background: #e71c4f24;
+    border: 1px solid #e71c4f;
+    color: #ffffff;
+    border-radius: 10px;
+    font-family: v.$font-code !important;
+    font-weight: 700;
+
+    &:hover {
+      box-shadow:
+        inset 0 0 0 2px #e71c4f,
+        0 5px 15px #e71c4f66;
     }
   }
 }

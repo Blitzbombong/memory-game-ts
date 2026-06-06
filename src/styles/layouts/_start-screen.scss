@@ -1,5 +1,5 @@
-@use '../abstracts/mixins' as m;
-@use '../abstracts/variables' as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
 
 .start-screen {
   display: flex;
@@ -29,69 +29,6 @@
     font-family: v.$font-accent;
     line-height: 100%;
     letter-spacing: 0%;
-  }
-
-  .play-button {
-    display: flex;
-    align-items: center;
-    gap: 3.2rem; 
-    background-color: #f4e869; 
-    padding: 1.2rem 2.2em;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.3s ease-out;
-
-    .icon-left {
-      display: flex;
-      cursor: pointer;
-      img {
-        height: 3.2rem;
-        width: 4.4rem;
-        object-fit: contain;
-      }
-    }
-
-    .button-text {
-      font-size: 4.0rem;
-      color: v.$color-bg;
-    }
-
-    .arrow-wrapper {
-      position: relative;
-      width: 4.4rem;
-      height: 2.4rem;
-
-      img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: opacity 0.3s ease;
-        top: 0;
-        left: 0;
-      }
-
-      .arrow-hover {
-        opacity: 0;
-      }
-    }
-
-    &:hover {
-        transform: scale(1.05);
-      .icon-left img {
-        transform: rotate(-18deg);
-      }
-
-      .arrow-wrapper {
-        .arrow-normal {
-          opacity: 0;
-        }
-        .arrow-hover {
-          opacity: 1;
-        }
-      }
-    }
   }
 
   .start-controller {

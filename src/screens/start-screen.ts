@@ -12,18 +12,18 @@ export const getStartScreenHTML = (): string => {
       <main class="start-main">
         <button class="play-button">
   
-        <span class="icon-left">
-          <img src="assets/icons/ui/stadia_controller.svg" alt="Play Icon">
-        </span>
-        
-        <span class="button-text">Play</span>
-        
-        <span class="arrow-wrapper">
-          <img src="assets/icons/ui/arrow_one.svg" class="arrow-normal" alt="Normal Arrow">
-          <img src="assets/icons/ui/arrow_two.svg" class="arrow-hover" alt="Hover Arrow">
-        </span>
+          <span class="icon-left">
+            <img src="assets/icons/ui/stadia_controller.svg" alt="Play Icon">
+          </span>
+          
+          <span class="button-text">Play</span>
+          
+          <span class="arrow-wrapper">
+            <img src="assets/icons/ui/arrow_one.svg" class="arrow-normal" alt="Normal Arrow">
+            <img src="assets/icons/ui/arrow_two.svg" class="arrow-hover" alt="Hover Arrow">
+          </span>
 
-      </button>
+        </button>
       </main>
       <footer class="start-footer">
         <img class="start-controller" src="assets/icons/ui/start_controller.svg" alt="Start screen illustration" class="start-illustration">
