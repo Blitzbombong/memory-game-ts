@@ -113,19 +113,21 @@ function renderSettingsScreen(appRef: HTMLElement) {
   });
 }
 
-/** Checks if the game has ended and updates the state accordingly.
- * @return {boolean} - Returns true if the game has ended, false otherwise.
+/** Checks if the game has ended by evaluating the game result. If the game is over, it updates the game winner and transitions to the result screen after a short delay.
+ * @returns {boolean} - Returns true if the game has ended, otherwise false.
  */
 function checkGameEnd(): boolean {
   const result = getGameResult(allCards.length);
-
+  
   if (result.isGameOver && result.winner) {
     gameWinner = result.winner;
-    currentState = "result";
-    render();
-    return true;
+    setTimeout(() => {
+      currentState = "result";
+      render();
+    }, 1000); 
+    return true; 
   }
-  return false;
+  return false; 
 }
 
 /** Opens the exit dialog. */

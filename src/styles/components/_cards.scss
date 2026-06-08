@@ -69,8 +69,7 @@
     pointer-events: none;
 
     .card__face--back {
-      background-color: var(--card-matched-bg);
-      border: var(--card-matched-border);
+      background-color: var(--card-matched-bg); 
       box-shadow: var(--card-matched-shadow);
     }
   }

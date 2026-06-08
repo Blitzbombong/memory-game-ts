@@ -97,7 +97,7 @@ function setupGridListener(allCards: Card[], render: () => void): void {
     const clickedCard = allCards.find(c => c.id === cardId);
 
     if (clickedCard && !clickedCard.isFlipped && !clickedCard.isMatched) {
-      handleCardClick(clickedCard, cardEl, render);
+      handleCardClick(clickedCard, cardEl, allCards, render);
     }
   });
 }
@@ -107,47 +107,58 @@ function setupGridListener(allCards: Card[], render: () => void): void {
  * @param {HTMLButtonElement} cardElement - The HTML button element representing the clicked card.
  * @param {() => void} render - A callback function to re-render the game state.
  */
-function handleCardClick(card: Card, cardElement: HTMLButtonElement, render: () => void): void {
+function handleCardClick(card: Card, cardElement: HTMLButtonElement, allCards: Card[], render: () => void): void {
   if (flippedCards.length >= 2) return;
 
   card.isFlipped = true;
   cardElement.classList.add('is-flipped');
   flippedCards.push(card);
   if (flippedCards.length === 2) {
-    checkForMatch(render);
+    checkForMatch(allCards, render);
   }
 }
 
 /** Checks if the flipped cards form a match. 
+ * @param {Card[]} allCards - The array of all cards in the game.
  * @param {() => void} render - A callback function to re-render the game state.
  */
-function checkForMatch(render: () => void): void {
+function checkForMatch(allCards: Card[], render: () => void): void {
   const [card1, card2] = flippedCards;
-
   if (card1.value === card2.value) {
     card1.isMatched = true;
     card2.isMatched = true;
     awardPoint();
     flippedCards = [];
-    render();
+    const isGameOver = allCards.every(c => c.isMatched);
+    setTimeout(() => {
+      if (isGameOver) {
+        render(); 
+      } else {
+        render();
+      }
+    }, 400); 
   } else {
     resetUnmatchedCards(card1, card2, render);
   }
 }
 
-/** Resets the unmatched cards after a mismatch. 
+/** Resets the state of unmatched cards after a short delay, allowing the player to see the cards before they are flipped back.
  * @param {Card} card1 - The first unmatched card.
  * @param {Card} card2 - The second unmatched card.
- * @param {() => void} render - A callback function to re-render the game state.
+ * @param {() => void} render - A callback function to re-render the game state after resetting the cards.
  */
 function resetUnmatchedCards(card1: Card, card2: Card, render: () => void): void {
+  setTimeout(() => {
+    document.querySelector(`[data-id="${card1.id}"]`)?.classList.remove('is-flipped');
+    document.querySelector(`[data-id="${card2.id}"]`)?.classList.remove('is-flipped');
+  }, 1000);
   setTimeout(() => {
     card1.isFlipped = false;
     card2.isFlipped = false;
     flippedCards = [];
     switchPlayer();
     render();
-  }, 1000);
+  }, 1400);
 }
 
 /** Awards a point to the current player. */
