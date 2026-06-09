@@ -67,6 +67,7 @@
   &.is-matched {
     cursor: default;
     pointer-events: none;
+    transition: none !important;
 
     .card__face--back {
       background-color: var(--card-matched-bg); 
