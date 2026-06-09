@@ -136,7 +136,7 @@ function checkForMatch(allCards: Card[], render: () => void): void {
       } else {
         render();
       }
-    }, 400); 
+    }, 600); 
   } else {
     resetUnmatchedCards(card1, card2, render);
   }
