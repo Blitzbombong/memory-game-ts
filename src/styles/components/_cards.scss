@@ -60,14 +60,18 @@
     }
   }
 
-  &.is-flipped .card__inner {
+  &.is-flipped .card__inner,
+  &.is-matched .card__inner {
     transform: rotateY(-180deg);
   }
 
   &.is-matched {
     cursor: default;
     pointer-events: none;
-    transition: none !important;
+    
+    .card__inner {
+      transition: none !important;
+    }
 
     .card__face--back {
       background-color: var(--card-matched-bg); 
