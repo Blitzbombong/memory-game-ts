@@ -11,13 +11,24 @@ export function setupSettingsScreenListeners(
   checkIfFormIsValid();
 }
 
-/** Initializes change listeners for all radio buttons in the settings form. */
+/** Initializes event listeners for the radio buttons in the settings form, including hover effects for theme previews. */
 function initRadioChangeListeners(): void {
-  const allRadios = document.querySelectorAll('.option-item input[type="radio"]');
-  allRadios.forEach((radio) => {
-    radio.addEventListener("change", () => {
-      checkIfFormIsValid();
-    });
+  const controls = document.querySelector('.settings-controls');
+  controls?.addEventListener('change', checkIfFormIsValid);
+
+  const togglePreview = (theme: string) => {
+    document.getElementById('code-theme-preview')!.style.display = theme === 'code-vibes' ? 'block' : 'none';
+    document.getElementById('gaming-theme-preview')!.style.display = theme === 'gaming' ? 'block' : 'none';
+  };
+
+  controls?.addEventListener('mouseover', (e) => {
+    const radio = (e.target as HTMLElement).closest('.option-item')?.querySelector('input[name="gameTheme"]');
+    if (radio) togglePreview((radio as HTMLInputElement).value);
+  });
+
+  controls?.addEventListener('mouseout', () => {
+    const checked = document.querySelector('input[name="gameTheme"]:checked') as HTMLInputElement;
+    if (checked) togglePreview(checked.value);
   });
 }
 

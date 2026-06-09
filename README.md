@@ -8,6 +8,19 @@ Das Spiel kann direkt hier im Browser gespielt werden:
 
 ---
 
+## ⚡ Quick Start (Vite)
+
+Um das Projekt in weniger als einer Minute lokal zu starten, führe diese Befehle im Terminal aus:
+
+```bash
+git clone [https://github.com/w-giesbrecht/memory-game-ts.git](https://github.com/w-giesbrecht/memory-game-ts.git)
+cd memory-game-ts
+npm install
+npm run dev
+```
+
+---
+
 ## 🔥 Features & Funktionen
 
 - **2-Spieler-Modus:** Lokales Duell (Blauer Spieler gegen Orangener Spieler) mit automatischer Punkte- und Rundenverwaltung.

@@ -84,7 +84,7 @@
   .preview-panel {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; 
+    align-items: flex-end;
     width: 100%;
   }
 
@@ -96,18 +96,35 @@
     border-radius: 0.8rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+}
 
-  .settings-layout-wrapper {
-    &:has(input[value="code-vibes"]:checked) {
-      .preview-panel #code-theme-preview {
-        display: block;
-      }
+.settings-layout-wrapper {
+  @include m.parent;
+  width: 100%;
+
+  &:has(input[value="code-vibes"]:checked) .preview-panel #code-theme-preview {
+    display: block;
+  }
+
+  &:has(input[value="gaming"]:checked) .preview-panel #gaming-theme-preview {
+    display: block;
+  }
+
+  &:has(.option-item:has(input[value="gaming"]):hover) {
+    .preview-panel #code-theme-preview {
+      display: none !important;
     }
+    .preview-panel #gaming-theme-preview {
+      display: block !important;
+    }
+  }
 
-    &:has(input[value="gaming"]:checked) {
-      .preview-panel #gaming-theme-preview {
-        display: block;
-      }
+  &:has(.option-item:has(input[value="code-vibes"]):hover) {
+    .preview-panel #gaming-theme-preview {
+      display: none !important;
+    }
+    .preview-panel #code-theme-preview {
+      display: block !important;
     }
   }
 }
