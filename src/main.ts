@@ -1,11 +1,11 @@
 import "./styles/style.scss";
 import type { GameSettings, GameState, Card, ThemeIcons } from "./types/types";
 import type { GameResultData } from "./types/types";
-import { getStartScreenHTML } from "./screens/start-screen";
-import { getSettingsScreenHTML } from "./screens/settings-screen";
-import { getInGameScreenHTML } from "./screens/in-game-screen";
-import { getExitDialogHTML } from "./screens/exit-dialog";
-import { getGameResultHTML } from "./screens/game-result-screen";
+import { getStartScreenHTML } from "./views/start-screen";
+import { getSettingsScreenHTML } from "./views/settings-screen";
+import { getInGameScreenHTML } from "./views/in-game-screen";
+import { getExitDialogHTML } from "./views/exit-dialog";
+import { getGameResultHTML } from "./views/game-result-screen";
 import { setupSettingsScreenListeners } from "./logic/settings-logic";
 import { createDeck } from "./logic/game-logic";
 import { setupGameListeners } from "./logic/game-logic";

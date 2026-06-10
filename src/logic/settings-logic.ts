@@ -9,12 +9,16 @@ export function setupSettingsScreenListeners(
   initRadioChangeListeners();
   initPlayButtonListener(onPlay);
   checkIfFormIsValid();
+  updateStatusText();
 }
 
 /** Initializes event listeners for the radio buttons in the settings form, including hover effects for theme previews. */
 function initRadioChangeListeners(): void {
   const controls = document.querySelector('.settings-controls');
-  controls?.addEventListener('change', checkIfFormIsValid);
+  controls?.addEventListener('change', () => {
+    checkIfFormIsValid();
+    updateStatusText(); 
+  });
 
   const togglePreview = (theme: string) => {
     document.getElementById('code-theme-preview')!.style.display = theme === 'code-vibes' ? 'block' : 'none';
@@ -79,4 +83,29 @@ export function getSelectedSettings(): GameSettings {
 function getCheckedValue(inputName: string): string {
   const checkedInput = document.querySelector(`input[name="${inputName}"]:checked`) as HTMLInputElement;
   return checkedInput ? checkedInput.value : '';
+}
+
+/** Updates the status text in the settings start bar to reflect the currently selected options. */
+function updateStatusText(): void {
+  const themeRadio = document.querySelector('input[name="gameTheme"]:checked') as HTMLInputElement;
+  const playerRadio = document.querySelector('input[name="chosenPlayer"]:checked') as HTMLInputElement;
+  const sizeRadio = document.querySelector('input[name="gameBoardSize"]:checked') as HTMLInputElement;
+
+  const themeSpan = document.getElementById('status-theme');
+  const playerSpan = document.getElementById('status-player');
+  const sizeSpan = document.getElementById('status-size');
+
+  if (!themeSpan || !playerSpan || !sizeSpan) return;
+
+  themeSpan.textContent = themeRadio 
+    ? (themeRadio.value === 'code-vibes' ? 'Code vibes' : 'Gaming theme') 
+    : 'Theme';
+
+  playerSpan.textContent = playerRadio 
+    ? (playerRadio.value === 'blue' ? 'Blue Player' : 'Orange Player') 
+    : 'Player';
+
+  sizeSpan.textContent = sizeRadio 
+    ? `Board-${sizeRadio.value} Cards` 
+    : 'Board size';
 }
